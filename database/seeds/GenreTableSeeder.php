@@ -19,12 +19,12 @@ class GenreTableSeeder extends Seeder
             'genrePoint'    => 5
         ]);
 
-        DB::table('groups')->insert([
+        DB::table('genres')->insert([
             'name' => '聖地巡礼',
             'genrePoint'    => 10
         ]);
 
-        DB::table('groups')->insert([
+        DB::table('genres')->insert([
             'name' => '食べ歩き',
             'genrePoint'    => 7
         ]);
