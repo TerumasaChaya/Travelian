@@ -33,4 +33,29 @@ $this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::get('/home', 'HomeController@index');
 
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['prefix' => 'user'], function () {
+
+        //
+        Route::group(['prefix' => 'group'], function () {
+            //
+            Route::get('/', 'User\GroupController@index');
+        });
+
+        //
+        Route::group(['prefix' => 'travel'], function () {
+            //申し込み済み選択科目 確認
+            Route::get('/', 'User\TravelController@index');
+        });
+
+
+    });
+});
+
+Route::group(['prefix' => 'image'], function(){
+    Route::get('travelImage/{name}', 'ImageController@travelImage');
+    Route::get('thumbnailImage/{name}', 'ImageController@thumbnailImage');
+});
+
 Route::get('admin/home', 'AdminHomeController@index');

@@ -15,6 +15,7 @@ class TravelDetailTableSeeder extends Seeder
         DB::table('travelDetails')->truncate();
 
         DB::table('travelDetails')->insert([
+            'id'    => 1,
             'travel_id'   => 1,
             'photo'   => 'umeda.jpeg',
             'longitude'    => 135.491583,
@@ -22,6 +23,7 @@ class TravelDetailTableSeeder extends Seeder
         ]);
 
         DB::table('travelDetails')->insert([
+            'id'    => 2,
             'travel_id'   => 2,
             'photo'   => 'gifu.jpeg',
             'longitude'    => 136.760654,
@@ -29,6 +31,7 @@ class TravelDetailTableSeeder extends Seeder
         ]);
 
         DB::table('travelDetails')->insert([
+            'id'    => 3,
             'travel_id'   => 2,
             'photo'   => 'mizuumi.jpeg',
             'longitude'    => 137.844843,
@@ -36,6 +39,7 @@ class TravelDetailTableSeeder extends Seeder
         ]);
 
         DB::table('travelDetails')->insert([
+            'id'    => 4,
             'travel_id'   => 3,
             'photo'   => 'usj.jpeg',
             'longitude'    => 135.432338,
