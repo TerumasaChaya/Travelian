@@ -14,10 +14,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Top</a></li>
                         <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->name}}<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="./bootstrap-ja.html">Japanese Page</a></li>
-                                <li><a href="./bootstrap.html">English Page</a></li>
+                                <li><a href="{{ url('/logout') }}">ログアウト</a></li>
                             </ul>
                         </li>
                         <li><a href="//github.com/windyakin/Honoka/releases">Download</a></li>
