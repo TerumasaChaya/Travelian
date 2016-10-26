@@ -53,6 +53,13 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+Route::group(['prefix' => 'api'], function () {
+    Route::group(['prefix' => 'user'], function () {
+        Route::post('/login', 'Api\UserController@login');
+        Route::post('/create', 'Api\UserController@create');
+    });
+});
+
 Route::group(['prefix' => 'image'], function(){
     Route::get('travelImage/{name}', 'ImageController@travelImage');
     Route::get('thumbnailImage/{name}', 'ImageController@thumbnailImage');
