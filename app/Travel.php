@@ -21,7 +21,7 @@ class Travel extends Model
         'releaseFlg'
     ];
 
-    //hasMany設定
+    //belongsTo設定
     public function users()
     {
         return $this->belongsTo('App\User','user_id');

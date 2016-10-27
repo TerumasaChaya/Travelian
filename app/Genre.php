@@ -13,4 +13,11 @@ class Genre extends Model
         "id","name",'genrePoint'
     ];
 
+    //belongsTo設定
+    public function travels()
+    {
+        return $this->belongsTo('App\Travel','id');
+
+    }
+
 }
