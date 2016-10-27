@@ -7,12 +7,13 @@
 
 @section('container')
 
-    <div class="container">
+    @yield('content-header')
 
-        @yield('content-header')
+    <section class="section section-default point">
 
-        @yield('content')
-
-    <div>
+        <div class="container">
+            @yield('content')
+        </div>
+    </section>
 
 @endsection
