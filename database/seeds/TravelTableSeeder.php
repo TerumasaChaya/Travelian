@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class TravelTableSeeder extends Seeder
 {
@@ -23,7 +24,9 @@ class TravelTableSeeder extends Seeder
             'prefecture'    => '大阪府',
             'travelPoint'   => 5,
             'comment'       => "ラーメン中心に食べ歩きました！",
-            'releaseFlg'    => true
+            'releaseFlg'    => true,
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
 
         DB::table('travels')->insert([
@@ -35,7 +38,9 @@ class TravelTableSeeder extends Seeder
             'prefecture'    => '岐阜県',
             'travelPoint'   => 15,
             'comment'       => "1日かけて回りました！",
-            'releaseFlg'    => true
+            'releaseFlg'    => true,
+            'created_at'    => Carbon::now(-24)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-24)->toDateTimeString()
         ]);
 
         DB::table('travels')->insert([
@@ -45,9 +50,25 @@ class TravelTableSeeder extends Seeder
             'name'      => 'IE4A卒業旅行',
             'thumbnail'     => 'usj.jpeg',
             'prefecture'    => '大阪府',
-            'travelPoint'   => 0,
+            'travelPoint'   => 15,
             'comment'       => "クラス全員でUSJ行ってきた！",
-            'releaseFlg'    => false
+            'releaseFlg'    => false,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('travels')->insert([
+            'id'    => 4,
+            'genre_id'   => 1,
+            'user_id'   => 1,
+            'name'      => '梅田ショッピング',
+            'thumbnail'     => 'kanransya.jpeg',
+            'prefecture'    => '大阪府',
+            'travelPoint'   => 0,
+            'comment'       => "ショッピング！",
+            'releaseFlg'    => true,
+            'created_at'    => Carbon::now(-72)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-72)->toDateTimeString()
         ]);
 
     }

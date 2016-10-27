@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class AdminTableSeeder extends Seeder
 {
     /**
@@ -18,6 +18,8 @@ class AdminTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
     }
 }

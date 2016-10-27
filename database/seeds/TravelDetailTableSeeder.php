@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class TravelDetailTableSeeder extends Seeder
 {
     /**
@@ -19,7 +19,9 @@ class TravelDetailTableSeeder extends Seeder
             'travel_id'   => 1,
             'photo'   => 'umeda.jpeg',
             'longitude'    => 135.491583,
-            'latitude'    => 34.698695
+            'latitude'    => 34.698695,
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
 
         DB::table('travelDetails')->insert([
@@ -27,7 +29,9 @@ class TravelDetailTableSeeder extends Seeder
             'travel_id'   => 2,
             'photo'   => 'gifu.jpeg',
             'longitude'    => 136.760654,
-            'latitude'    => 35.423298
+            'latitude'    => 35.423298,
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
 
         DB::table('travelDetails')->insert([
@@ -35,7 +39,9 @@ class TravelDetailTableSeeder extends Seeder
             'travel_id'   => 2,
             'photo'   => 'mizuumi.jpeg',
             'longitude'    => 137.844843,
-            'latitude'    => 36.380761
+            'latitude'    => 36.380761,
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
 
         DB::table('travelDetails')->insert([
@@ -43,7 +49,9 @@ class TravelDetailTableSeeder extends Seeder
             'travel_id'   => 3,
             'photo'   => 'usj.jpeg',
             'longitude'    => 135.432338,
-            'latitude'    =>  34.665442
+            'latitude'    =>  34.665442,
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
 
 
