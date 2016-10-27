@@ -19,7 +19,7 @@ class CreateTravelTable extends Migration
             $table->string('name');
             $table->string('thumbnail');
             $table->string('prefecture');
-            $table->string('travelPoint');
+            $table->integer('travelPoint');
             $table->string('comment');
             $table->boolean('releaseFlg');
             $table->timestamps();
