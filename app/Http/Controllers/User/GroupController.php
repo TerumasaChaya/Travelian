@@ -15,11 +15,7 @@ class GroupController extends Controller
     {
 
         $groupMembers = GroupMember::where('user_id',Auth::user()->id)->get();
-
-        $json = Response::json($groupMembers);
-
-        var_dump($json);
-
+        
         //view に 値を渡す
         return view("user.group")->with('groupMembers',$groupMembers);
     }
