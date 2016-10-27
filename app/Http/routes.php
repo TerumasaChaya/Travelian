@@ -45,7 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         //
         Route::group(['prefix' => 'travel'], function () {
-            //申し込み済み選択科目 確認
             Route::get('/', 'User\TravelController@index');
         });
 
@@ -54,10 +53,21 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'api'], function () {
+
     Route::group(['prefix' => 'user'], function () {
-        Route::post('/login', 'Api\UserController@login');
-        Route::post('/create', 'Api\UserController@create');
+        Route::post('login', 'Api\UserController@login');
+        Route::post('create', 'Api\UserController@create');
     });
+
+    Route::group(['prefix' => 'travel'], function () {
+        Route::group(['prefix' => 'search'], function () {
+            Route::get('name/{name}', 'Api\TravelController@searchName');
+            Route::get('genre/asc/{name}', 'Api\TravelController@searchGenreASC');
+            Route::get('genre/desc/{name}', 'Api\TravelController@searchGenreDESC');
+            Route::get('detail/{id}', 'Api\TravelController@travelDetail');
+        });
+    });
+
 });
 
 Route::group(['prefix' => 'image'], function(){
