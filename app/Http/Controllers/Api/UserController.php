@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    
+
     public function login(Request $request)
     {
 
@@ -31,13 +31,28 @@ class UserController extends Controller
 
         $user = User::where('email',$request->input("email"))->first();
 
-        if(Hash::check($request->input("password"), $user->password)){
+        if(isset($user)){
             // データがあればFailedを返す
             return Response::json(array('status' => 'Failed'));
         }else{
 
+            $user = new User();
 
+            //ユーザー登録
+            $user->name =  $request->input("name");
+            $user->email =  $request->input("email");
+            $user->password = bcrypt($request->input("email"));
 
+            if($user->save()){
+
+                // 登録できればSuccessとユーザーデータを返す
+                return Response::json(
+                    array(
+                        'status' => 'Success',
+                        'user'   => $user
+                    )
+                );
+            }
         }
 
     }
