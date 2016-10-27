@@ -13,15 +13,9 @@
 
     <!-- Containers
     ================================================== -->
-    <div class="bs-docs-section">
-
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="page-header">
-                    <h1 id="container">あなたの所属グループ一覧</h1>
-                </div>
-
+    <section class="section section-default point">
+        <div class="container">
+            <div class="row">
                 <div class="bs-component">
                     <div class="list-group">
                         @foreach($groupMembers as $group)
@@ -33,7 +27,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!--END CONTENT-->
 @endsection
 

@@ -4,16 +4,12 @@
 @include('user.elements.js-header')
 @include('user.elements.js-footer')
 @include('user.elements.top-bar')
+@include('user.elements.footer')
 
 @section('container')
 
     @yield('content-header')
 
-    <section class="section section-default point">
-
-        <div class="container">
-            @yield('content')
-        </div>
-    </section>
+    @yield('content')
 
 @endsection

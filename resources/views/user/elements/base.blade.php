@@ -19,7 +19,7 @@
 @yield('top-bar')
 
 @yield('container')
-
+@yield('footer')
 @yield('js-footer')
 @yield('page-js')
 @yield('page-footer')

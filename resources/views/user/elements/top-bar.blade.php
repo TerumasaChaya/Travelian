@@ -13,7 +13,11 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">{{Auth::user()->name}}</a></li>
+                        <li class="active">
+                            <a href="#">
+                                {{Auth::user()->name}}<small>さん</small>
+                            </a>
+                        </li>
                         <li><a href="#">リンク</a></li>
                         <li><a href="#">リンク</a></li>
                     </ul>
