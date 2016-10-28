@@ -51,26 +51,31 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 });
+Route::group(['middleware' => 'api'], function () {
 
-Route::group(['prefix' => 'api'], function () {
+    Route::group(['prefix' => 'api'], function () {
 
-    Route::group(['prefix' => 'user'], function () {
-        Route::post('login', 'Api\UserController@login');
-        Route::post('create', 'Api\UserController@create');
-    });
-
-    Route::group(['prefix' => 'travel'], function () {
-        Route::group(['prefix' => 'search'], function () {
-            Route::get('name/{name}', 'Api\TravelController@searchName');
-            Route::get('genre/{name}', 'Api\TravelController@searchGenre');
-            Route::get('genre/{name}/asc', 'Api\TravelController@searchGenreASC');
-            Route::get('genre/{name}/desc', 'Api\TravelController@searchGenreDESC');
-            Route::get('detail/{id}', 'Api\TravelController@travelDetail');
+        Route::post('user/create', 'Api\UserController@create');
+        
+        Route::group(['middleware' => 'login'], function () {
+            Route::group(['prefix' => 'user'], function () {
+                Route::post('login', 'Api\UserController@login');
+            });
         });
+        
+        Route::group(['prefix' => 'travel'], function () {
+            Route::group(['prefix' => 'search'], function () {
+                Route::get('name/{name}', 'Api\TravelController@searchName');
+                Route::get('genre/{name}', 'Api\TravelController@searchGenre');
+                Route::get('genre/{name}/asc', 'Api\TravelController@searchGenreASC');
+                Route::get('genre/{name}/desc', 'Api\TravelController@searchGenreDESC');
+                Route::get('detail/{id}', 'Api\TravelController@travelDetail');
+            });
+        });
+
     });
 
 });
-
 Route::group(['prefix' => 'image'], function(){
     Route::get('travelImage/{name}', 'ImageController@travelImage');
     Route::get('thumbnailImage/{name}', 'ImageController@thumbnailImage');

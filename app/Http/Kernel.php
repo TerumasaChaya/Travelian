@@ -33,6 +33,11 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
+            \App\Http\Middleware\ApiMiddleware::class,
+        ],
+        'login' => [
+            'throttle:60,1',
+            \App\Http\Middleware\ApiLoginMiddleware::class,
         ],
     ];
 
