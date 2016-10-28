@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
             'name' => '田中',
             'email' => 'tanaka@ecc.com',
             'password' => bcrypt('tanaka'),
-            'token'    => str_random(50),
+            'login_key'    => str_random(50),
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
             'name' => '鈴木',
             'email' => 'suzuki@ecc.com',
             'password' => bcrypt('suziki'),
-            'token'    => str_random(50),
+            'login_key'    => str_random(50),
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
             'name' => '山田',
             'email' => 'yamada@ecc.com',
             'password' => bcrypt('yamada'),
-            'token'    => str_random(50),
+            'login_key'    => str_random(50),
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
