@@ -44,6 +44,32 @@ class TravelController extends Controller
 
     }
 
+    public function searchGenre($name)
+    {
+
+        $genre = Genre::where('name',$name)->first();
+
+        if(!isset($genre)) {
+            return Response::json(
+                array(
+                    'status' => 'Success',
+                    'travel' => []
+                )
+            );
+        }
+
+
+        $travel = Travel::where('genre_id',$genre->id)->orderBy('created_at','DESC')->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travel' => $travel
+            )
+        );
+
+    }
+
     public function searchGenreDESC($name)
     {
 

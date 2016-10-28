@@ -62,8 +62,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'travel'], function () {
         Route::group(['prefix' => 'search'], function () {
             Route::get('name/{name}', 'Api\TravelController@searchName');
-            Route::get('genre/asc/{name}', 'Api\TravelController@searchGenreASC');
-            Route::get('genre/desc/{name}', 'Api\TravelController@searchGenreDESC');
+            Route::get('genre/{name}', 'Api\TravelController@searchGenre');
+            Route::get('genre/{name}/asc', 'Api\TravelController@searchGenreASC');
+            Route::get('genre/{name}/desc', 'Api\TravelController@searchGenreDESC');
             Route::get('detail/{id}', 'Api\TravelController@travelDetail');
         });
     });
