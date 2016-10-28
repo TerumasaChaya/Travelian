@@ -92,7 +92,12 @@ class TravelController extends Controller
 
         if($travel->releaseFlg == false){
             //公開されてない
-            return Response::json(array('status' => 'Failed'));
+            return Response::json(
+                array(
+                    'status' => 'Failed',
+                    'reason' => 'this travel is undocumented'
+                )
+            );
         }
 
         $detail = TravelDetail::where('travel_id',$travel->id)->get();
