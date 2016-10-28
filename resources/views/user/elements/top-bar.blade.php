@@ -15,7 +15,8 @@
                     <ul class="nav navbar-nav">
                         <li class="active">
                             <a href="#">
-                                {{Auth::user()->name}}<small>さん</small>
+                                {{Auth::user()->name}}
+                                <small>さん</small>
                             </a>
                         </li>
                         <li><a href="#">リンク</a></li>
@@ -25,8 +26,8 @@
                     <div class="nav navbar-form navbar-right">
                         <div class="form-group">
                             <a href="/logout" class="btn btn-twitter"><i class="fa fa-lg"></i> ログアウト</a>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>

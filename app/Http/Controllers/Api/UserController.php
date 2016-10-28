@@ -11,13 +11,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function login(Request $request)
     {
 
-        $user = User::where('id', $request->input("id"))->first();
+        $user = User::where('login_key', $request->input("login_key"))->first();
 
-        if(Hash::check($request->input("password"), $user->password)){
+        if(isset($user)){
             // データがあればSuccessを返す
             return Response::json(array('status' => 'Success'));
         }else{
