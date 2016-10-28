@@ -24,7 +24,7 @@
 
                     <div class="nav navbar-form navbar-right">
                         <div class="form-group">
-                            <a href="/logout" class="btn btn-twitter"><i class="fa fa-twitter fa-lg"></i> ログアウト</a>
+                            <a href="/logout" class="btn btn-twitter"><i class="fa fa-lg"></i> ログアウト</a>
                     </div>
 
                 </div>
