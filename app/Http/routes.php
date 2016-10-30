@@ -55,12 +55,14 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::group(['prefix' => 'api'], function () {
 
-        Route::post('user/create', 'Api\UserController@create');
-        
-        Route::group(['middleware' => 'login'], function () {
-            Route::group(['prefix' => 'user'], function () {
+        Route::group(['prefix' => 'user'], function () {
+
+            Route::post('create', 'Api\UserController@create');
+
+            Route::group(['middleware' => 'login'], function () {
                 Route::post('login', 'Api\UserController@login');
             });
+
         });
         
         Route::group(['prefix' => 'travel'], function () {
