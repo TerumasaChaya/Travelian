@@ -59,10 +59,11 @@ Route::group(['middleware' => 'api'], function () {
 
             Route::post('create', 'Api\UserController@create');
 
+            Route::post('manualLogin', 'Api\UserController@manualLogin');
+
             Route::group(['middleware' => 'login'], function () {
                 Route::post('login', 'Api\UserController@login');
             });
-
         });
         
         Route::group(['prefix' => 'travel'], function () {
@@ -78,6 +79,7 @@ Route::group(['middleware' => 'api'], function () {
     });
 
 });
+
 Route::group(['prefix' => 'image'], function(){
     Route::get('travelImage/{name}', 'ImageController@travelImage');
     Route::get('thumbnailImage/{name}', 'ImageController@thumbnailImage');

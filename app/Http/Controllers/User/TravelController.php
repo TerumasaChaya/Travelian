@@ -12,7 +12,7 @@ class TravelController extends Controller
 
     public function index()
     {
-        
+
         $travels = Travel::where('user_id',Auth::user()->id)->get();
 
         //view に 値を渡す

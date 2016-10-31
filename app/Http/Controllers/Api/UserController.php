@@ -24,6 +24,44 @@ class UserController extends Controller
         );
     }
 
+    public function manualLogin(Request $request)
+    {
+
+        $user = User::where('email',$request->input("email"))->first();
+
+        if(isset($user)){
+
+            if(Hash::check($request->input("password"), $user->password)){
+
+                return Response::json(
+                    array(
+                        'status' => 'Success',
+                        'user'   => $user
+                    )
+                );
+            }else{
+
+                return Response::json(
+                    array(
+                        'status' => 'Failed',
+                        'reason' => 'this password is dose not match'
+                    )
+                );
+            }
+
+        }else{
+
+            return Response::json(
+                array(
+                    'status' => 'Failed',
+                    'reason' => 'this email is not exist'
+                )
+            );
+
+        }
+
+    }
+
     public function create(Request $request){
 
         $user = User::where('email',$request->input("email"))->first();
