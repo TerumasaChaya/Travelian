@@ -3,5 +3,5 @@
 /public/storage
 .env
 /.vagrant
-/.idea
+.idea/
 Homestead.yaml
