@@ -18,7 +18,7 @@ class ApiMiddleware
      * @return mixed
      */
 
-    static $app_key = "Travelial";
+    protected $app_key = "Travelial";
 
     public function handle($request, Closure $next)
     {
@@ -26,7 +26,7 @@ class ApiMiddleware
         try{
             $key = Crypt::decrypt($request->input("app_key"));
 
-            if(self::$app_key != $key){
+            if($this->app_key != $key){
                 return Response::json(
                     array(
                         'status' => 'Failed',
