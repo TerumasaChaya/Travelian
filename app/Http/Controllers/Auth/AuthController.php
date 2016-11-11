@@ -65,11 +65,13 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $login_key = str_random(50);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'login_key' => str_random(50)
+            'login_key'    => $login_key,
         ]);
     }
 }
