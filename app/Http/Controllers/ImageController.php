@@ -10,7 +10,7 @@ class ImageController extends Controller
 
     public function travelImage($name)
     {
-        $save_path = public_path().'/travelImage/';
+        $save_path = storage_path().'/image/travelImage/';
         $name = $save_path . $name;
 
         $file = File::get($name);
@@ -24,7 +24,7 @@ class ImageController extends Controller
 
     public function thumbnailImage($name)
     {
-        $save_path = public_path().'/thumbnailImage/';
+        $save_path = storage_path().'/image/thumbnailImage/';
         $name = $save_path . $name;
 
         $file = File::get($name);
