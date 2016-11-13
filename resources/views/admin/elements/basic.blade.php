@@ -5,7 +5,6 @@
 @include('admin.elements.js-footer')
 @include('admin.elements.top-bar')
 @include('admin.elements.side-bar')
-@include('admin.elements.footer')
 
 @section('container')
 
@@ -14,8 +13,6 @@
         @yield('content-header')
 
         @yield('content')
-
-        @yield('footer')
 
     </div>
 
