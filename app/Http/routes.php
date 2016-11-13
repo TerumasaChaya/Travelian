@@ -86,4 +86,35 @@ Route::group(['prefix' => 'image'], function(){
     Route::get('thumbnailImage/{name}', 'ImageController@thumbnailImage');
 });
 
-Route::get('admin/home', 'AdminHomeController@index');
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['prefix' => 'admin'], function(){
+
+        Route::get('home', 'AdminHomeController@index');
+
+        Route::group(['prefix' => 'photos'], function() {
+            Route::get('/', 'Admin\PhotoController@index');
+        });
+
+        Route::group(['prefix' => 'genres'], function() {
+            Route::get('/', 'Admin\GenreController@index');
+        });
+
+        Route::group(['prefix' => 'users'], function() {
+            Route::get('/', 'Admin\UserController@index');
+            Route::get('/{id}', 'Admin\UserController@detail');
+        });
+
+        Route::group(['prefix' => 'travel'], function() {
+
+            Route::group(['prefix' => 'private'], function() {
+                Route::get('/', 'Admin\TravelController@privateIndex');
+            });
+
+            Route::group(['prefix' => 'public'], function() {
+                Route::get('/', 'Admin\TravelController@publicIndex');
+            });
+
+        });
+
+    });
+});
