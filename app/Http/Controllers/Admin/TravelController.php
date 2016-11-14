@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Travel;
 use App\Http\Controllers\Controller;
+use App\TravelDetail;
 use App\User;
 
 class TravelController extends Controller
@@ -28,11 +29,24 @@ class TravelController extends Controller
         return view('admin.travels.public')->with('travels',$travels);
     }
 
-    public function detail($id)
-    {
-        $user = User::where('id',$id)->first();
+    public function privateDetail($id){
 
-        return view('admin.users-detail')->with('user',$user);
+        $travelDetails = TravelDetail::where('travel_id',$id)->get();
+
+        $details = [];
+
+        foreach ($travelDetails as $detail){
+            $details[] =
+                [
+                    'name' => $detail->photo,
+                    'lat'  => $detail->latitude,
+		            'lng'  => $detail->longitude,
+		            'icon' => $detail->photo
+                ];
+        }
+
+        return view('admin.travels.private-detail')->with('details',$details);
+
     }
 
 }

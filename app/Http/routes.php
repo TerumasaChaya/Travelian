@@ -108,6 +108,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
             Route::group(['prefix' => 'private'], function() {
                 Route::get('/', 'Admin\TravelController@privateIndex');
+                Route::get('/{id}', 'Admin\TravelController@privateDetail');
             });
 
             Route::group(['prefix' => 'public'], function() {
