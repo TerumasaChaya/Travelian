@@ -2335,3 +2335,18 @@
   overflow: visible;
   clip: auto;
 }
+
+/*　追加 */
+.google-maps {
+  position: relative;
+  padding-bottom: 135%; /*高さは250pxで固定*/
+  height: 0;
+  overflow: hidden;
+}
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
