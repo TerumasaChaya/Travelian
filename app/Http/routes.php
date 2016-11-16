@@ -93,6 +93,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
         Route::group(['prefix' => 'photos'], function() {
             Route::get('/', 'Admin\PhotoController@index');
+            Route::get('/{id}', 'Admin\PhotoController@detail');
+            Route::post('/delete', 'Admin\PhotoController@delete');
         });
 
         Route::group(['prefix' => 'genres'], function() {
@@ -102,6 +104,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'Admin\UserController@index');
             Route::get('/{id}', 'Admin\UserController@detail');
+            Route::post('/delete', 'Admin\UserController@delete');
         });
 
         Route::group(['prefix' => 'travel'], function() {
@@ -113,7 +116,10 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
             Route::group(['prefix' => 'public'], function() {
                 Route::get('/', 'Admin\TravelController@publicIndex');
+                Route::get('/{id}', 'Admin\TravelController@publicDetail');
             });
+
+            Route::get('/detail/{id}', 'Admin\TravelController@Detail');
 
         });
 
