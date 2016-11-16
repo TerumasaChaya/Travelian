@@ -59,13 +59,27 @@ class TravelTableSeeder extends Seeder
 
         DB::table('travels')->insert([
             'id'    => 4,
-            'genre_id'   => 1,
+            'genre_id'   => 3,
             'user_id'   => 1,
             'name'      => '梅田ショッピング',
-            'thumbnail'     => 'kanransya.jpeg',
+            'thumbnail'     => 'umeda.jpeg',
             'prefecture'    => '大阪府',
             'travelPoint'   => 0,
             'comment'       => "ショッピング！",
+            'releaseFlg'    => true,
+            'created_at'    => Carbon::now(-72)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-72)->toDateTimeString()
+        ]);
+
+        DB::table('travels')->insert([
+            'id'    => 5,
+            'genre_id'   => 2,
+            'user_id'   => 2,
+            'name'      => '琵琶湖一周の旅',
+            'thumbnail'     => 'takashima.jpg',
+            'prefecture'    => '滋賀県',
+            'travelPoint'   => 50,
+            'comment'       => "聖地琵琶湖を一周してきました！",
             'releaseFlg'    => true,
             'created_at'    => Carbon::now(-72)->toDateTimeString(),
             'updated_at'    => Carbon::now(-72)->toDateTimeString()

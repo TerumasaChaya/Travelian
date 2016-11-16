@@ -23,4 +23,30 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //hasMany設定
+    public function travels()
+    {
+        return $this->hasMany('App\Travel');
+
+    }
+
+    //hasMany設定
+    public function groupMembers()
+    {
+        return $this->hasMany('App\groupMember');
+
+    }
+
+    public function delete()
+    {
+        // delete all related
+        $this->travels()->delete();
+        $this->groupMembers()->delete();
+
+        // delete the user
+        return parent::delete();
+    }
+
+
 }

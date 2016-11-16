@@ -17,10 +17,10 @@ class TravelDetail extends Model
         'latitude'
     ];
 
-    //hasMany設定
+    //belongs設定
     public function travels()
     {
-        return $this->hasMany('App\User','travel_id');
+        return $this->belongsTo('App\Travel','travel_id');
 
     }
 

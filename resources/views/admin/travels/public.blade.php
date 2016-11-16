@@ -40,7 +40,11 @@
                             <tbody>
                             @foreach($travels as $travel)
                                 <tr>
-                                    <td>{{$travel->name}}</td>
+                                    <td>
+                                        <a href="/admin/travel/public/{{$travel->id}}">
+                                            {{$travel->name}}
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href="/admin/users/{{$travel->users->id}}">
                                             {{$travel->users->name}}

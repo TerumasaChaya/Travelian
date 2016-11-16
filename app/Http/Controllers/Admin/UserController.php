@@ -7,6 +7,7 @@ use App\Travel;
 use App\Http\Controllers\Controller;
 use App\TravelDetail;
 use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -26,7 +27,22 @@ class UserController extends Controller
     {
         $user = User::where('id',$id)->first();
 
-        return view('admin.users-detail')->with('user',$user);
+        $travels = Travel::where('user_id',$id)->get();
+
+        return view('admin.users-detail')->with('user',$user)->with('travels',$travels);
+    }
+
+    public function delete(Request $request)
+    {
+
+        $user = User::where('id', $request->input("id"))->first();
+
+        if ($user->delete()) {
+            return redirect('/admin/users');
+        } else {
+            return redirect()->back();
+        }
+
     }
 
 }
