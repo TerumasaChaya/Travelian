@@ -19,6 +19,10 @@ class TravelController extends Controller
 
         $travel = Travel::where('name','like',"%{$name}%")->where('releaseFlg',true)->get();
 
+        for ($i=0; $i <count($travel); $i++){
+            $travel[0]->genre_id = $travel[0]->genres->name;
+        }
+
         return Response::json(
             array(
                 'status' => 'Success',
@@ -34,6 +38,10 @@ class TravelController extends Controller
         $genre = Genre::where('name',$name)->first();
 
         $travel = Travel::where('genre_id',$genre->id)->orderBy('travelPoint','ASC')->get();
+
+        for ($i=0; $i <count($travel); $i++){
+            $travel[0]->genre_id = $travel[0]->genres->name;
+        }
 
         return Response::json(
             array(
@@ -61,6 +69,10 @@ class TravelController extends Controller
 
         $travel = Travel::where('genre_id',$genre->id)->orderBy('created_at','DESC')->get();
 
+        for ($i=0; $i <count($travel); $i++){
+            $travel[0]->genre_id = $travel[0]->genres->name;
+        }
+
         return Response::json(
             array(
                 'status' => 'Success',
@@ -76,6 +88,10 @@ class TravelController extends Controller
         $genre = Genre::where('name',$name)->first();
 
         $travel = Travel::where('genre_id',$genre->id)->orderBy('travelPoint','DESC')->get();
+
+        for ($i=0; $i <count($travel); $i++){
+            $travel[0]->genre_id = $travel[0]->genres->name;
+        }
 
         return Response::json(
             array(
