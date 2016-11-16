@@ -18,15 +18,17 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="panel panel-primary">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <i class="fa fa-picture-o fa-fw"></i>Photos
                 </div>
                 <div class="panel-body">
                     @foreach($travels as $travel)
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->photo])}}"
-                                 class="img-responsive" style="margin-bottom:30px;">
+                            <a href="/admin/photos/{{$travel->id}}">
+                                <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->photo])}}"
+                                     class="img-responsive" style="margin-bottom:30px;">
+                            </a>
                         </div>
                     @endforeach
                 </div>
