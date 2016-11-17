@@ -42,6 +42,13 @@ class Travel extends Model
 
     }
 
+    //hasMany設定
+    public function travelPrefectures()
+    {
+        return $this->hasMany('App\TravelPrefecture');
+
+    }
+
     public function delete()
     {
         // delete all related photos
