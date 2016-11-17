@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupMemberTableSeeder::class);
         $this->call(TravelTableSeeder::class);
         $this->call(TravelDetailTableSeeder::class);
-
+        $this->call(PrefecturesTableSeeder::class);
     }
 }
