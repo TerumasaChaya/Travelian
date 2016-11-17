@@ -14,6 +14,32 @@ use Illuminate\Http\Request;
 class TravelController extends Controller
 {
 
+    public function alpha(){
+
+        $genre = Genre::orderBy('kana','ASC')->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travel' => $genre
+            )
+        );
+
+    }
+
+    public function point(){
+
+        $genre = Genre::orderBy('genrePoint','DESC')->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travel' => $genre
+            )
+        );
+
+    }
+
     public function searchName($name)
     {
 

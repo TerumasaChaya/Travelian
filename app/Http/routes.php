@@ -68,13 +68,25 @@ Route::group(['middleware' => 'api'], function () {
         });
         
         Route::group(['prefix' => 'travel'], function () {
+
             Route::group(['prefix' => 'search'], function () {
                 Route::get('name/{name}', 'Api\TravelController@searchName');
-                Route::get('genre/{name}', 'Api\TravelController@searchGenre');
-                Route::get('genre/{name}/asc', 'Api\TravelController@searchGenreASC');
-                Route::get('genre/{name}/desc', 'Api\TravelController@searchGenreDESC');
                 Route::get('detail/{id}', 'Api\TravelController@travelDetail');
             });
+
+            Route::group(['prefix' => 'genre'], function () {
+
+                Route::get('{name}', 'Api\TravelController@searchGenre');
+                Route::get('{name}/asc', 'Api\TravelController@searchGenreASC');
+                Route::get('{name}/desc', 'Api\TravelController@searchGenreDESC');
+
+            });
+
+        });
+
+        Route::group(['prefix' => 'genre'], function () {
+            Route::get('alpha', 'Api\TravelController@alpha');
+            Route::get('point', 'Api\TravelController@point');
         });
 
     });
