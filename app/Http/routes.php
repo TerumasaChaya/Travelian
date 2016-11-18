@@ -44,9 +44,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', 'User\GroupController@index');
         });
 
+        Route::group(['prefix' => 'photos'], function() {
+            Route::get('/{id}', 'User\PhotoController@detail');
+        });
+
         //
         Route::group(['prefix' => 'travel'], function () {
             Route::get('/', 'User\TravelController@index');
+            Route::get('/{id}', 'User\TravelController@detail');
+            Route::post('/confirm', 'User\TravelController@confirm');
         });
 
 
