@@ -166,4 +166,12 @@ class TravelController extends Controller
 
     }
 
+    public function searchRegion(Request $request){
+
+        $json = base64_decode($request->input('region'));
+
+        var_dump($json);
+        
+    }
+
 }

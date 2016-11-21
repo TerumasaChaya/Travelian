@@ -78,6 +78,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::group(['prefix' => 'search'], function () {
                 Route::get('name/{name}', 'Api\TravelController@searchName');
                 Route::get('detail/{id}', 'Api\TravelController@travelDetail');
+                Route::post('region', 'Api\TravelController@searchRegion');
             });
 
             Route::group(['prefix' => 'genre'], function () {
