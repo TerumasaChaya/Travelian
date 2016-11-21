@@ -82,11 +82,13 @@ Route::group(['middleware' => 'api'], function () {
 
             });
 
+            Route::get('point', 'Api\TravelController@travelPoint');
+
         });
 
         Route::group(['prefix' => 'genre'], function () {
             Route::get('alpha', 'Api\TravelController@alpha');
-            Route::get('point', 'Api\TravelController@point');
+            Route::get('point', 'Api\TravelController@genrePoint');
         });
 
     });
