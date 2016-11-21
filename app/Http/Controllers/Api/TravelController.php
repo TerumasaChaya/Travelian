@@ -6,6 +6,7 @@ use App\User;
 use App\Travel;
 use App\TravelDetail;
 use App\Genre;
+use App\Prefecture;
 use Auth;
 use Hash;
 use Response;
@@ -44,6 +45,10 @@ class TravelController extends Controller
 
         $travel = Travel::orderBy('travelPoint','DESC')->get();
 
+        for ($i=0; $i <count($travel); $i++){
+            $travel[$i]->genre_id = $travel[$i]->genres->name;
+        }
+
         return Response::json(
             array(
                 'status' => 'Success',
@@ -59,7 +64,7 @@ class TravelController extends Controller
         $travel = Travel::where('name','like',"%{$name}%")->where('releaseFlg',true)->get();
 
         for ($i=0; $i <count($travel); $i++){
-            $travel[0]->genre_id = $travel[0]->genres->name;
+            $travel[$i]->genre_id = $travel[$i]->genres->name;
         }
 
         return Response::json(
@@ -79,7 +84,7 @@ class TravelController extends Controller
         $travel = Travel::where('genre_id',$genre->id)->orderBy('travelPoint','ASC')->get();
 
         for ($i=0; $i <count($travel); $i++){
-            $travel[0]->genre_id = $travel[0]->genres->name;
+            $travel[$i]->genre_id = $travel[$i]->genres->name;
         }
 
         return Response::json(
@@ -109,7 +114,7 @@ class TravelController extends Controller
         $travel = Travel::where('genre_id',$genre->id)->orderBy('created_at','DESC')->get();
 
         for ($i=0; $i <count($travel); $i++){
-            $travel[0]->genre_id = $travel[0]->genres->name;
+            $travel[$i]->genre_id = $travel[$i]->genres->name;
         }
 
         return Response::json(
@@ -129,7 +134,7 @@ class TravelController extends Controller
         $travel = Travel::where('genre_id',$genre->id)->orderBy('travelPoint','DESC')->get();
 
         for ($i=0; $i <count($travel); $i++){
-            $travel[0]->genre_id = $travel[0]->genres->name;
+            $travel[$i]->genre_id = $travel[$i]->genres->name;
         }
 
         return Response::json(
@@ -170,8 +175,30 @@ class TravelController extends Controller
 
         $json = base64_decode($request->input('region'));
 
-        var_dump($json);
-        
+        $json = json_decode($json);
+
+        $pres = Prefecture::whereIn('name', $json->region)->get();
+
+        $travels = [];
+
+        foreach ($pres as $pre){
+            foreach ($pre->travelPrefectures as $travelPrefecture){
+                $travels[] =  $travelPrefecture->travels;
+            }
+        }
+
+        foreach ($travels as $travel){
+            $travel->genre_id = $travel->genres->name;
+        }
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travel' => $travels
+            )
+        );
+
+
     }
 
 }

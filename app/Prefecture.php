@@ -13,4 +13,11 @@ class Prefecture extends Model
         "id","name",
     ];
 
+    //hasMany設定
+    public function travelPrefectures()
+    {
+        return $this->hasMany('App\TravelPrefecture');
+
+    }
+
 }
