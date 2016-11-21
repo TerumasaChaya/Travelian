@@ -63,10 +63,17 @@
                                                                 <label>ジャンル</label>
                                                                 <select name="genre" class="form-control">
                                                                     @foreach(\App\Genre::all() as $genre)
+                                                                        @if($genre->id == $travel->genre_id)
                                                                         <option value="{{$genre->id}}"
-                                                                                label="{{$genre->name}}">
+                                                                                label="{{$genre->name}}" selected>
                                                                             {{$genre->name}}
                                                                         </option>
+                                                                        @else
+                                                                            <option value="{{$genre->id}}"
+                                                                                    label="{{$genre->name}}">
+                                                                                {{$genre->name}}
+                                                                            </option>
+                                                                        @endif
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -89,11 +96,26 @@
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
-                                                                <label>Created Date</label>
+                                                                <label>投稿日時</label>
                                                                 <input class="form-control"
                                                                        value="{{$travel->created_at}}"
                                                                        readonly
                                                                 >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group">
+                                                                <label>旅の公開設定</label>
+                                                                <select name="release" class="form-control" id="release">
+                                                                    <option value="1" label="公開">
+                                                                        公開
+                                                                    </option>
+                                                                    <option value="0" label="非公開">
+                                                                        非公開
+                                                                    </option>
+
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
@@ -208,5 +230,18 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVZIvgXJfefqwyagKk5H_1Cbd8J2T4dEU&callback=initMap"></script>
+
+    <script>
+        $(function() {
+            var flg =  {{$travel->releaseFlg}};
+
+            if(flg == 1){
+                $("#release").val("1");
+            }else{
+                $("#release").val("0");
+            }
+
+        });
+    </script>
 
 @endsection

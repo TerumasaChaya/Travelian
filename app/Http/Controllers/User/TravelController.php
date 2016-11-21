@@ -53,9 +53,10 @@ class TravelController extends Controller
         $travel->name = $request->input('name');
         $travel->genre_id = $request->input('genre');
         $travel->comment = $request->input('comment');
+        $travel->releaseFlg = $request->input('release');
 
         if($travel->update()){
-            return redirect()->back();
+            return redirect('/user/travel');
         }else{
 
         }
