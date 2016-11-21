@@ -27,7 +27,7 @@ class TravelController extends Controller
 
     }
 
-    public function point(){
+    public function genrePoint(){
 
         $genre = Genre::orderBy('genrePoint','DESC')->get();
 
@@ -35,6 +35,19 @@ class TravelController extends Controller
             array(
                 'status' => 'Success',
                 'travel' => $genre
+            )
+        );
+
+    }
+
+    public function travelPoint(){
+
+        $travel = Travel::orderBy('travelPoint','DESC')->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travel' => $travel
             )
         );
 
