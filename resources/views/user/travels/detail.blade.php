@@ -14,14 +14,14 @@
     <!-- Containers
     ================================================== -->
 
-    <section class="section section-default point">
+    <section class="section section-inverse point">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5">
                     @if($travel->releaseFlg == true)
                         <div class="panel panel-primary">
                             @else
-                                <div class="panel panel-danger">
+                                <div class="panel panel-lock">
                                     @endif
                                     <div class="panel-heading">
                                         <i class="fa fa-picture-o fa-fw"></i>マップ
@@ -36,7 +36,7 @@
                             @if($travel->releaseFlg == true)
                                 <div class="panel panel-primary">
                                     @else
-                                        <div class="panel panel-danger">
+                                        <div class="panel panel-lock">
                                             @endif
 
                                             <div class="panel-heading">
