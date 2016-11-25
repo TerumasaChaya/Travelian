@@ -38,9 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'user'], function () {
 
-        //
         Route::group(['prefix' => 'group'], function () {
-            //
             Route::get('/', 'User\GroupController@index');
         });
 
@@ -53,6 +51,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/', 'User\TravelController@index');
             Route::get('/{id}', 'User\TravelController@detail');
             Route::post('/confirm', 'User\TravelController@confirm');
+
+            Route::group(['prefix' => 'search'], function () {
+                Route::get('/', 'User\TravelSearchController@index');
+            });
+
         });
 
 
