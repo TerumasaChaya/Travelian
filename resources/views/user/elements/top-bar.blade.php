@@ -13,21 +13,20 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{Auth::user()->name}}
                                 <small>さん</small>
-                            </a>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/logout">
+                                        ログアウト
+                                    </a></li>
+                            </ul>
                         </li>
                         <li><a href="#">リンク</a></li>
                         <li><a href="#">リンク</a></li>
                     </ul>
-
-                    <div class="nav navbar-form navbar-right">
-                        <div class="form-group">
-                            <a href="/logout" class="btn btn-twitter"><i class="fa fa-lg"></i> ログアウト</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
