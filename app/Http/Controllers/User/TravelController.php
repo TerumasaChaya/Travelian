@@ -16,7 +16,7 @@ class TravelController extends Controller
     public function index()
     {
 
-        $travels = Travel::where('user_id',Auth::user()->id)->get();
+        $travels = Travel::where('user_id',Auth::user()->id)->paginate(9);
 
         //view に 値を渡す
         return view("user.travels.travel")->with('travels',$travels);

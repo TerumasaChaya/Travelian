@@ -14,61 +14,77 @@
     <!-- Containers
     ================================================== -->
 
-    <section class="section section-default point">
+    <section class="section section-inverse point">
         <div class="container">
             <div class="row">
+                <div class="col-xs-12 subtitle">
+                    <h2>あなたの旅です</h2>
+                    <p>写真をクリックすると情報を変更できます。</p>
+                </div>
                 @foreach($travels as $travel)
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="bs-component">
                             @if($travel->releaseFlg == true)
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <i class="fa fa-unlock fa-fw"></i>
-                                        <h3 class="panel-title">{{$travel->name}}</h3>
+                                        {{$travel->name}}
                                     </div>
                                     @else
-                                        <div class="panel panel-danger">
+                                        <div class="panel panel-lock">
                                             <div class="panel-heading">
                                                 <i class="fa fa-lock fa-fw"></i>
-                                                <h3 class="panel-title">{{$travel->name}}</h3>
+                                                {{$travel->name}}
                                             </div>
                                             @endif
                                             <div class="panel-body">
-                                                <div class="list-group">
-                                                    <a href="/user/travel/{{$travel->id}}" class="list-group-item">
-                                                        <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
-                                                             class="img-responsive">
-                                                    </a>
-                                                    <a href="#" class="list-group-item">
-                                                        <p class="list-group-item-heading">ジャンル</p>
-                                                        <h4 class="list-group-item-text">{{$travel->genres->name}}</h4>
-                                                    </a>
-                                                    <a href="#" class="list-group-item">
-                                                        <p class="list-group-item-heading">旅範囲</p>
-                                                        <h4 class="list-group-item-text">
-                                                            @foreach($travel->travelPrefectures as $prefecture)
-                                                                {{$prefecture->prefectures->name}}
-                                                            @endforeach
-                                                        </h4>
-                                                    </a>
-                                                    <a href="#" class="list-group-item">
-                                                        <p class="list-group-item-heading">旅ポイント</p>
-                                                        <h4 class="list-group-item-text">{{$travel->travelPoint}}
-                                                            ポイント</h4>
-                                                    </a>
+                                                <a href="/user/travel/{{$travel->id}}">
+                                                    <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
+                                                         class="img-responsive">
+                                                </a>
 
-                                                    <a href="#" class="list-group-item">
-                                                        <p class="list-group-item-heading">コメント</p>
-                                                        <h4 class="list-group-item-text">{{$travel->comment}}</h4>
-                                                    </a>
-                                                </div>
                                             </div>
+                                            <table class="table evaluation-point-table">
+                                                <tbody>
+                                                <tr>
+                                                    <th><i class="fa fa-fw fa-paint-brush"></i> ジャンル</th>
+                                                    <td>
+                                                        {{$travel->genres->name}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><i class="fa fa-fw fa-refresh"></i> 旅範囲</th>
+                                                    <td>
+                                                        @foreach($travel->travelPrefectures as $prefecture)
+                                                            {{$prefecture->prefectures->name}}
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><i class="fa fa-fw fa-magic"></i> ポイント</th>
+                                                    <td>
+                                                        {{$travel->travelPoint}}
+                                                        ポイント
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><i class="fa fa-fw fa-magic"></i> 投稿日時</th>
+                                                    <td>
+                                                        {{$travel->created_at->format('Y年m月d日')}}
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                 </div>
                         </div>
                         @endforeach
                     </div>
+                    <div class="text-center">
+                        {!! $travels->render() !!}
+                    </div>
             </div>
+        </div>
     </section>
     <!--END CONTENT-->
 @endsection
