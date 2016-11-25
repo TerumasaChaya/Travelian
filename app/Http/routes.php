@@ -79,7 +79,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::group(['prefix' => 'travel'], function () {
 
             Route::group(['prefix' => 'search'], function () {
-                Route::get('name/{name}', 'Api\TravelController@searchName');
+                Route::get('/', 'Api\TravelController@searchTravel');
                 Route::get('detail/{id}', 'Api\TravelController@travelDetail');
                 Route::post('region', 'Api\TravelController@searchRegion');
             });

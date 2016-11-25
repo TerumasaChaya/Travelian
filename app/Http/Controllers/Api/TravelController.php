@@ -58,10 +58,76 @@ class TravelController extends Controller
 
     }
 
-    public function searchName($name)
+    public function searchTravel(Request $request)
     {
 
-        $travel = Travel::where('name','like',"%{$name}%")->where('releaseFlg',true)->get();
+        $json = base64_decode($request->input('region'));
+
+        $json = json_decode($json);
+
+        $keyword = $json->keyword;
+
+        $genreId = "";
+
+        $genres = [];
+
+        $pres = [];
+
+        //json内のキーワードが空じゃなかったらテーブル検索
+        if($json->keyword != ""){
+
+            //ジャンルを部分一致検索
+            $keywordGenre = Genre::where('name','like',"%{$keyword}%")->get();
+            foreach ($keywordGenre as $genre){
+                $genres[] = $genre->id;
+            }
+
+            //都道府県を部分一致検索
+            $keywordPre = Prefecture::where('name','like',"%{$keyword}%")->get();
+            foreach ($keywordPre as $pre){
+                foreach ($pre->travelPrefectures as $travelPrefecture){
+                    $pres[] =  $travelPrefecture->travel_id;
+                }
+            }
+        }
+
+
+        //json内のジャンルが空じゃなかったらテーブル検索
+        //検索結果が存在すればgenreIdに値を代入
+        if($json->genre != ""){
+            $genreId = Genre::where('name',$json->genre)->first();
+            if($genreId != null){
+                $genreId = $genreId->id;
+            }
+        }
+
+        $region = Prefecture::whereIn('name', $json->region)->get();
+
+        $regions = [];
+
+        foreach ($region as $pre){
+            foreach ($pre->travelPrefectures as $travelPrefecture){
+                $regions[] =  $travelPrefecture->travel_id;
+            }
+        }
+
+        $keywordTravel = Travel::where('name','like',"%{$keyword}%");
+
+        $keywordGenre = Travel::whereIn('genre_id',$genres);
+
+        $keywordPre = Travel::whereIn('id',$pres);
+
+        $genre = Travel::where('genre_id',$genreId);
+
+        $region = Travel::whereIn('id',$regions);
+
+        $travel = Travel::where('id',"")
+            ->union($keywordGenre)
+            ->union($keywordTravel)
+            ->union($keywordPre)
+            ->union($genre)
+            ->union($region)
+            ->get();
 
         for ($i=0; $i <count($travel); $i++){
             $travel[$i]->genre_id = $travel[$i]->genres->name;
