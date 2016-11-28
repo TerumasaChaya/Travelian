@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\User;
 
+use App\Genre;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Travel;
@@ -15,8 +16,11 @@ class TravelSearchController extends Controller
 
     public function index()
     {
+
+        $genre = Genre::orderBy('genrePoint','DESC')->limit(5)->get();
+
         //view に 値を渡す
-        return view("user.travels.search.search");
+        return view("user.travels.search.search")->with('popGenre',$genre);
     }
 
 }

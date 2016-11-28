@@ -67,10 +67,10 @@
                             <i class="fa fa-search"></i>
                         </a>
                     </div>
-                    <span class="badge">{{\count(\App\Travel::all())}}</span>
+                    <span class="badge">{{\count(\App\Travel::where('releaseFlg',true)->get())}}</span>
                     <div class="point-description">
                         <h4>旅の検索</h4>
-                        <p>他の人の旅を検索することができます</p>
+                        <p>公開されている旅を検索することができます</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 point-box">

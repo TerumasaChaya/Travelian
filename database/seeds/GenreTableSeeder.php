@@ -50,5 +50,58 @@ class GenreTableSeeder extends Seeder
             'updated_at'    => Carbon::now(-48)->toDateTimeString()
         ]);
 
+        DB::table('genres')->insert([
+            'id'    => 5,
+            'name' => 'ふらり旅',
+            'kana' => 'ぶらりたび',
+            'genrePoint'    => 11,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('genres')->insert([
+            'id'    => 6,
+            'name' => '観光',
+            'kana' => 'かんこう',
+            'genrePoint'    => 30,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('genres')->insert([
+            'id'    => 7,
+            'name' => '寺・神社',
+            'kana' => 'てら・じんじゃ',
+            'genrePoint'    => 8,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('genres')->insert([
+            'id'    => 8,
+            'name' => '温泉',
+            'kana' => 'おんせん',
+            'genrePoint'    => 18,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('genres')->insert([
+            'id'    => 9,
+            'name' => '世界遺産',
+            'kana' => 'せかいいさん',
+            'genrePoint'    => 50,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
+
+        DB::table('genres')->insert([
+            'id'    => 10,
+            'name' => 'B級グルメ',
+            'kana' => 'びーきゅうぐるめ',
+            'genrePoint'    => 33,
+            'created_at'    => Carbon::now(-48)->toDateTimeString(),
+            'updated_at'    => Carbon::now(-48)->toDateTimeString()
+        ]);
     }
 }

@@ -29,9 +29,9 @@ class PhotoController extends Controller
         curl_setopt($conn, CURLOPT_URL, $url);
 
         //プロキシ設定(実行サーバー環境しだいで不要)
-        curl_setopt($conn, CURLOPT_HTTPPROXYTUNNEL, 1);
-        curl_setopt($conn, CURLOPT_PROXY, 'http://proxy.ecc.ac.jp:8080');
-        curl_setopt($conn, CURLOPT_PROXYPORT, '8080');
+//        curl_setopt($conn, CURLOPT_HTTPPROXYTUNNEL, 1);
+//        curl_setopt($conn, CURLOPT_PROXY, 'http://proxy.ecc.ac.jp:8080');
+//        curl_setopt($conn, CURLOPT_PROXYPORT, '8080');
         //プロキシ設定　ここまで
 
         // 実行

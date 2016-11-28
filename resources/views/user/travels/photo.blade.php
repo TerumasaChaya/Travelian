@@ -8,7 +8,7 @@
 
 @endsection
 @section('content')
-    <section class="section section-default point">
+    <section class="section section-inverse point">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5">
