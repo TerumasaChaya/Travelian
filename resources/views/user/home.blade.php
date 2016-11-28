@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 point-box">
                     <div class="point-circle start">
-                        <a href="/user/travel">
+                        <a href="/user/travel/search">
                             <i class="fa fa-search"></i>
                         </a>
                     </div>

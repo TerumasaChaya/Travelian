@@ -38,7 +38,7 @@
                                             </div>
                                             @endif
                                             <div class="panel-body">
-                                                <a href="/user/travel/{{$travel->id}}">
+                                                <a href="/user/travel/detail/{{$travel->id}}">
                                                     <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
                                                          class="img-responsive">
                                                 </a>
@@ -47,13 +47,13 @@
                                             <table class="table evaluation-point-table">
                                                 <tbody>
                                                 <tr>
-                                                    <th><i class="fa fa-fw fa-paint-brush"></i> ジャンル</th>
+                                                    <th><i class="fa fa-fw fa-database"></i> ジャンル</th>
                                                     <td>
                                                         {{$travel->genres->name}}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th><i class="fa fa-fw fa-refresh"></i> 旅範囲</th>
+                                                    <th><i class="fa fa-fw fa-map"></i> 旅範囲</th>
                                                     <td>
                                                         @foreach($travel->travelPrefectures as $prefecture)
                                                             {{$prefecture->prefectures->name}}
@@ -61,7 +61,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th><i class="fa fa-fw fa-magic"></i> ポイント</th>
+                                                    <th><i class="fa fa-fw fa-star"></i> ポイント</th>
                                                     <td>
                                                         {{$travel->travelPoint}}
                                                         ポイント

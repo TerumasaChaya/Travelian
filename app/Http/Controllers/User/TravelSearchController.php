@@ -15,9 +15,8 @@ class TravelSearchController extends Controller
 
     public function index()
     {
-
         //view に 値を渡す
-        return view("user.travels.travel");
+        return view("user.travels.search.search");
     }
 
 }
