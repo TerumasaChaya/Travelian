@@ -61,7 +61,7 @@ class TravelController extends Controller
     public function searchTravel(Request $request)
     {
 
-        $json = base64_decode($request->input('region'));
+        $json = base64_decode($request->input('json'));
 
         $json = json_decode($json);
 
@@ -90,7 +90,6 @@ class TravelController extends Controller
                 }
             }
         }
-
 
         //json内のジャンルが空じゃなかったらテーブル検索
         //検索結果が存在すればgenreIdに値を代入
