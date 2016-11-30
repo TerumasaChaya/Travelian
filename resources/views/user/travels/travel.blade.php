@@ -14,79 +14,98 @@
     <!-- Containers
     ================================================== -->
 
-    <section class="section section-inverse point">
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 subtitle">
-                    <h2>あなたの旅です</h2>
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+                    <h3>あなたの旅です</h3>
                     <p>写真をクリックすると情報を変更できます。</p>
                 </div>
-                @foreach($travels as $travel)
-                    <div class="col-lg-4">
-                        <div class="bs-component">
-                            @if($travel->releaseFlg == true)
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-unlock fa-fw"></i>
-                                        {{$travel->name}}
-                                    </div>
-                                    @else
-                                        <div class="panel panel-lock">
-                                            <div class="panel-heading">
-                                                <i class="fa fa-lock fa-fw"></i>
-                                                {{$travel->name}}
-                                            </div>
-                                            @endif
-                                            <div class="panel-body">
-                                                <a href="/user/travel/detail/{{$travel->id}}">
-                                                    <img src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
-                                                         class="img-responsive">
-                                                </a>
-
-                                            </div>
-                                            <table class="table evaluation-point-table">
-                                                <tbody>
-                                                <tr>
-                                                    <th><i class="fa fa-fw fa-database"></i> ジャンル</th>
-                                                    <td>
-                                                        {{$travel->genres->name}}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th><i class="fa fa-fw fa-map"></i> 旅範囲</th>
-                                                    <td>
-                                                        @foreach($travel->travelPrefectures as $prefecture)
-                                                            {{$prefecture->prefectures->name}}
-                                                        @endforeach
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th><i class="fa fa-fw fa-star"></i> ポイント</th>
-                                                    <td>
-                                                        {{$travel->travelPoint}}
-                                                        ポイント
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th><i class="fa fa-fw fa-magic"></i> 投稿日時</th>
-                                                    <td>
-                                                        {{$travel->created_at->format('Y年m月d日')}}
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="text-center">
-                        {!! $travels->render() !!}
-                    </div>
             </div>
         </div>
-    </section>
-    <!--END CONTENT-->
+        <div class="container">
+            <div class="row row-bottom-padded-md">
+                <div class="col-sm-12 col-md-12">
+                    <div class="tabulation animate-box fadeInUp animated">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#flights" aria-controls="flights" role="tab"
+                                   data-toggle="tab">公開している旅</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">非公開にしている旅</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="flights">
+                                <div class="row">
+                                    @foreach($releaseTravels as $travel)
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <div class="fh5co-blog animate-box fadeInUp animated">
+                                                <a href="/user/travel/detail/{{ $travel->id}}"><img class="img-responsive"
+                                                                 src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
+                                                                 alt=""></a>
+                                                <div class="blog-text-release">
+                                                    <div class="prod-title">
+                                                        <h3><a href="#"></a>{{ $travel->name}}</h3>
+                                                        <h4>ジャンル: {{$travel->genres->name}}</h4>
+                                                        <span class="posted_by">{{ $travel->created_at->format('Y年m月d日')}}</span>
+                                                        <span class="comment"><a href="">{{ $travel->travelPoint}}<i
+                                                                        class="icon-point-up"></i></a></span>
+                                                        <p>{{ $travel->comment}}</p>
+                                                        <p><a href="/user/travel/detail/{{ $travel->id}}">もっと見る</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix visible-md-block">
+                                        </div>
+                                    @endforeach
+                                    <div class="text-center">
+                                            {!! $releaseTravels->render() !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="hotels">
+                                <div class="row">
+                                    @foreach($hideTravels as $travel)
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <div class="fh5co-blog animate-box fadeInUp animated">
+                                                <a href="/user/travel/detail/{{ $travel->id}}"><img class="img-responsive"
+                                                                 src="{{action(ImageController::class.'@travelImage',['name' => $travel->thumbnail])}}"
+                                                                 alt=""></a>
+                                                <div class="blog-text-hide">
+                                                    <div class="prod-title">
+                                                        <h3><a href="#"></a>{{ $travel->name}}</h3>
+                                                        <h4>ジャンル: {{$travel->genres->name}}</h4>
+                                                        <span class="posted_by">{{ $travel->created_at->format('Y年m月d日')}}</span>
+                                                        <span class="comment"><a href="">{{ $travel->travelPoint}}<i
+                                                                        class="icon-point-up"></i></a></span>
+                                                        <p>{{ $travel->comment}}</p>
+                                                        <p><a href="/user/travel/detail/{{ $travel->id}}">もっと見る</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix visible-md-block">
+                                        </div>
+                                    @endforeach
+                                        <div class="text-center">
+                                            {!! $hideTravels->render() !!}
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('page-js')

@@ -16,10 +16,12 @@ class TravelController extends Controller
     public function index()
     {
 
-        $travels = Travel::where('user_id',Auth::user()->id)->paginate(9);
+        $releaseTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',true)->paginate(6);
+
+        $hideTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',false)->paginate(6);
 
         //view に 値を渡す
-        return view("user.travels.travel")->with('travels',$travels);
+        return view("user.travels.travel")->with('releaseTravels',$releaseTravels)->with('hideTravels',$hideTravels);
     }
 
     public function detail($id){
