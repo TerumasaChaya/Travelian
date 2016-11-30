@@ -4,87 +4,206 @@
     共有記
 @endsection
 
-@section('content-header')
-    <div class="jumbotron special">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 outline">
-                    <h1>ようこそ！共有記へ！</h1>
-                    <p>このサイトはアプリ共遊記と連携しています。</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <aside class="social">
-        <div class="social-button">
-            <ul>
-
-            </ul>
-        </div>
-    </aside>
-    <!--END TITLE & BREADCRUMB PAGE-->
-@endsection
-
 @section('content')
 
     <!-- Containers
     ================================================== -->
 
-    <section class="section section-default point">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 subtitle">
-                    <h2>様々な機能が利用できます</h2>
-                    <p>以下からお選びください。</p>
-                </div>
-                <div class="col-md-3 col-sm-6 point-box">
-                    <div class="point-circle compass">
-                        <a href="/user/group">
-                            <i class="fa fa-user-circle"></i>
-                        </a>
-                    </div>
-                    <span class="badge">{{\count(Auth::user()->groupMembers)}}</span>
-                    <div class="point-description">
-                        <h4>グループ</h4>
-                        <p>自分が参加したグループを一覧で見ることができます</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 point-box">
-                    <div class="point-circle replace">
-                        <a href="/user/travel">
-                            <i class="fa fa-train"></i>
-                        </a>
-                    </div>
-                    <span class="badge">{{\count(Auth::user()->travels)}}</span>
-                    <div class="point-description">
-                        <h4>旅</h4>
-                        <p>自分が参加した旅を一覧で見ることができます</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 point-box">
-                    <div class="point-circle start">
-                        <a href="/user/travel/search">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </div>
-                    <span class="badge">{{\count(\App\Travel::where('releaseFlg',true)->get())}}</span>
-                    <div class="point-description">
-                        <h4>旅の検索</h4>
-                        <p>公開されている旅を検索することができます</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 point-box">
-                    <div class="point-circle japanese">
-                        <span class="icon-jp"></span>
-                    </div>
-                    <div class="point-description">
-                        <h4>Optimized Japanese</h4>
-                        <p>本家Bootstrapでは指定されていない日本語フォントに関する指定が行われているため、美しく日本語を表示できます。</p>
+    <div class="fh5co-hero">
+        <div class="fh5co-overlay"></div>
+        <div class="fh5co-cover" data-stellar-background-ratio="0.5"
+             style="background-image: url(//travel/images/d5c2370b8c3acc492065c9a2af340f68.jpg);">
+            <div class="desc">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 col-md-5">
+                            <div class="tabulation animate-box fadeInUp animated">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#flights" aria-controls="flights" role="tab"
+                                           data-toggle="tab">新着の旅</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">タイトルが入る</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">タイトルが入る</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="flights">
+                                        <div class="row">
+                                            @foreach(\App\Travel::where('releaseFlg',true)->orderBy('created_at','DESC')->limit(2)->get() as $newTravel)
+                                            <div class="col-md-12 col-sm-12 fh5co-tours animate-box fadeInUp animated" data-animate-effect="fadeIn">
+                                                <div href="#"><img src="{{action(ImageController::class.'@travelImage',['name' => $newTravel->thumbnail])}}" class="img-responsive">
+                                                    <div class="desc">
+                                                        <span></span>
+                                                        <h3>{{ $newTravel->name}}</h3>
+                                                        <span>{{ $newTravel->created_at->format('Y年m月d日')}}</span>
+                                                        <a class="btn btn-primary btn-outline"
+                                                           href="/user/travel/detail/{{ $newTravel->id}}">
+                                                            詳細を見る
+                                                            <i class="icon-arrow-right22"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                @endforeach
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="hotels">
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="packages">
+                                        <div class="row">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <img src="/webImage/title.png" class="img-responsive"> -->
+                        </div>
+                        <div class="desc2 animate-box fadeInUp animated">
+                            <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+                                <h2>ようこそ！共有記へ！</h2>
+                                <p>このサイトはアプリ共遊記と連携しています。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div id="fh5co-tours" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+                    <h3>Hot Trips</h3>
+                    <p>今、最も注目されている旅。</p>
+                </div>
+            </div>
+            <div class="row">
+                @foreach(\App\Travel::where('releaseFlg',true)->orderBy('travelPoint','DESC')->limit(3)->get() as $popTravel)
+                <div class="col-md-4 col-sm-6 fh5co-tours animate-box fadeInUp animated" data-animate-effect="fadeIn">
+                    <div href="#"><img src="{{action(ImageController::class.'@travelImage',['name' => $popTravel->thumbnail])}}" class="img-responsive">
+                        <div class="desc">
+                            <span></span>
+                            <h3>{{ $popTravel->name}}</h3>
+                            <span>{{ $popTravel->created_at->format('Y年m月d日')}}</span>
+                            <a class="btn btn-primary btn-outline"
+                               href="/user/travel/detail/{{ $popTravel->id}}">
+                                詳細を見る
+                                <i class="icon-arrow-right22"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                <div class="col-md-12 text-center animate-box fadeInUp animated">
+                    <p><a class="btn btn-primary btn-outline btn-lg" href="#">他の旅を探しますか? <i
+                                    class="icon-arrow-right22"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fh5co-destination">
+        <div class="tour-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul id="fh5co-destination-list" class="animate-box fadeInUp animated">
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-1.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-2.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-3.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-4.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-5.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-half text-center">
+                            <div class="title-bg">
+                                <div class="case-studies-summary">
+                                    <h2>Most Popular Genres</h2>
+                                    <span><a href="#">全てのジャンルを表示</a></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-6.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-7.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-8.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-9.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="one-forth text-center" style="background-image: url(/travel/images/place-10.jpg); ">
+                            <a href="#">
+                                <div class="case-studies-summary">
+                                    <h2>ジャンル名が入る</h2>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--END CONTENT-->
 @endsection
 
