@@ -8,8 +8,6 @@
 
 @section('container')
 
-    @yield('content-header')
-
     @yield('content')
 
 @endsection
