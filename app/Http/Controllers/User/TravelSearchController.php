@@ -25,7 +25,7 @@ class TravelSearchController extends Controller
 
     public function result(Request $request){
 
-        $region = [
+        $regions = [
             [
                 '北海道'
             ],
@@ -55,16 +55,16 @@ class TravelSearchController extends Controller
 
         $keyword = $request->input('keyword');
 
-        $pres = $request->input('pres');
+        if( $request->input('pres') != ""){
+            $region = $regions[$request->input('pres')];
+        }
 
-        $region = $request->input('region');
+        if($request->input('region') != ""){
+
+        }
 
         $genreId = $request->input('genre');
-
-        $keyword = $json->keyword;
-
-        $genreId = "";
-
+        
         $keywordTravel = Travel::where('id',"");
 
         $genres = [];
@@ -72,7 +72,7 @@ class TravelSearchController extends Controller
         $pres = [];
 
         //json内のキーワードが空じゃなかったらテーブル検索
-        if($json->keyword != ""){
+        if($keyword != ""){
 
             $keywordTravel = Travel::where('name','like',"%{$keyword}%");
 
@@ -91,14 +91,7 @@ class TravelSearchController extends Controller
             }
         }
 
-        //json内のジャンルが空じゃなかったらテーブル検索
-        //検索結果が存在すればgenreIdに値を代入
-        if($json->genre != ""){
-            $genreId = Genre::where('name',$json->genre)->first();
-            if($genreId != null){
-                $genreId = $genreId->id;
-            }
-        }
+
 
         $region = Prefecture::whereIn('name', $json->region)->get();
 
