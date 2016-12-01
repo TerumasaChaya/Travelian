@@ -61,7 +61,7 @@ class TravelController extends Controller
     public function searchTravel(Request $request)
     {
 
-        $json = base64_decode($request->input('json'));
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
 
         $json = json_decode($json);
 
