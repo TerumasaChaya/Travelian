@@ -69,12 +69,16 @@ class TravelController extends Controller
 
         $genreId = "";
 
+        $keywordTravel = Travel::where('id',"");
+
         $genres = [];
 
         $pres = [];
 
         //json内のキーワードが空じゃなかったらテーブル検索
         if($json->keyword != ""){
+
+            $keywordTravel = Travel::where('name','like',"%{$keyword}%");
 
             //ジャンルを部分一致検索
             $keywordGenre = Genre::where('name','like',"%{$keyword}%")->get();
@@ -109,8 +113,6 @@ class TravelController extends Controller
                 $regions[] =  $travelPrefecture->travel_id;
             }
         }
-
-        $keywordTravel = Travel::where('name','like',"%{$keyword}%");
 
         $keywordGenre = Travel::whereIn('genre_id',$genres);
 

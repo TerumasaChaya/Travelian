@@ -29,4 +29,7 @@
     <!-- Main JS -->
     <script src="/travel/js/main.js"></script>
 
+    <!-- matchHeight JS追加 -->
+    <script src="/travel/js/jquery.matchHeight.js"></script>
+
 @endsection

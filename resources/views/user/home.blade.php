@@ -26,7 +26,8 @@
                                            data-toggle="tab">新着の旅</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">タイトルが入る</a>
+                                        <a href="#hotels" aria-controls="hotels" role="tab"
+                                           data-toggle="tab">タイトルが入る</a>
                                     </li>
                                     <li role="presentation">
                                         <a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">タイトルが入る</a>
@@ -38,21 +39,24 @@
                                     <div role="tabpanel" class="tab-pane active" id="flights">
                                         <div class="row">
                                             @foreach(\App\Travel::where('releaseFlg',true)->orderBy('created_at','DESC')->limit(2)->get() as $newTravel)
-                                            <div class="col-md-12 col-sm-12 fh5co-tours animate-box fadeInUp animated" data-animate-effect="fadeIn">
-                                                <div href="#"><img src="{{action(ImageController::class.'@travelImage',['name' => $newTravel->thumbnail])}}" class="img-responsive">
-                                                    <div class="desc">
-                                                        <span></span>
-                                                        <h3>{{ $newTravel->name}}</h3>
-                                                        <span>{{ $newTravel->created_at->format('Y年m月d日')}}</span>
-                                                        <a class="btn btn-primary btn-outline"
-                                                           href="/user/travel/detail/{{ $newTravel->id}}">
-                                                            詳細を見る
-                                                            <i class="icon-arrow-right22"></i>
-                                                        </a>
+                                                <div class="col-md-12 col-sm-12 fh5co-tours animate-box fadeInUp animated"
+                                                     data-animate-effect="fadeIn">
+                                                    <div href="#"><img
+                                                                src="{{action(ImageController::class.'@travelImage',['name' => $newTravel->thumbnail])}}"
+                                                                class="img-responsive">
+                                                        <div class="desc">
+                                                            <span></span>
+                                                            <h3>{{ $newTravel->name}}</h3>
+                                                            <span>{{ $newTravel->created_at->format('Y年m月d日')}}</span>
+                                                            <a class="btn btn-primary btn-outline"
+                                                               href="/user/travel/detail/{{ $newTravel->id}}">
+                                                                詳細を見る
+                                                                <i class="icon-arrow-right22"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                                @endforeach
+                                            @endforeach
                                         </div>
                                     </div>
 
@@ -91,21 +95,24 @@
                 </div>
             </div>
             <div class="row">
-                @foreach(\App\Travel::where('releaseFlg',true)->orderBy('travelPoint','DESC')->limit(3)->get() as $popTravel)
-                <div class="col-md-4 col-sm-6 fh5co-tours animate-box fadeInUp animated" data-animate-effect="fadeIn">
-                    <div href="#"><img src="{{action(ImageController::class.'@travelImage',['name' => $popTravel->thumbnail])}}" class="img-responsive">
-                        <div class="desc">
-                            <span></span>
-                            <h3>{{ $popTravel->name}}</h3>
-                            <span>{{ $popTravel->created_at->format('Y年m月d日')}}</span>
-                            <a class="btn btn-primary btn-outline"
-                               href="/user/travel/detail/{{ $popTravel->id}}">
-                                詳細を見る
-                                <i class="icon-arrow-right22"></i>
-                            </a>
+                @foreach(\App\Travel::where('releaseFlg',true)->orderBy('travelPoint','DESC')->limit(4)->get() as $popTravel)
+                    <div class="col-md-6 col-sm-6 fh5co-tours animate-box fadeInUp animate"
+                         data-animate-effect="fadeIn">
+                        <div href="#" class="match"><img
+                                    src="{{action(ImageController::class.'@travelImage',['name' => $popTravel->thumbnail])}}"
+                                    class="img-responsive img-height">
+                            <div class="desc">
+                                <span></span>
+                                <h3>{{ $popTravel->name}}</h3>
+                                <span>{{ $popTravel->created_at->format('Y年m月d日')}}</span>
+                                <a class="btn btn-primary btn-outline"
+                                   href="/user/travel/detail/{{ $popTravel->id}}">
+                                    詳細を見る
+                                    <i class="icon-arrow-right22"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
                 <div class="col-md-12 text-center animate-box fadeInUp animated">
                     <p><a class="btn btn-primary btn-outline btn-lg" href="#">他の旅を探しますか? <i
@@ -209,6 +216,16 @@
 
 @section('page-js')
     <script type="text/javascript">
+
+        $(window).on('load', function () {
+
+            $('.match').matchHeight();
+
+            $('.img-height').each(function () {
+                var h = $(this).parent().height();
+                $(this).height(h);
+            });
+        });
 
     </script>
 @endsection
