@@ -26,13 +26,14 @@
                     <p>いまホットなジャンルです。</p>
                 </div>
                 <div class="col-lg-8 animate-box fadeInDown animated">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="/user/travel/search/result" method="POST">
+                        {{csrf_field()}}
                         <fieldset>
                             <legend>検索フォーム</legend>
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-2 control-label">キーワード</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="inputEmail"
+                                    <input type="text" name="keyword" class="form-control" id="inputEmail"
                                            placeholder="検索したいキーワードを入力してください">
                                 </div>
                             </div>
@@ -110,7 +111,7 @@
                             <div class="form-group">
                                 <label for="select" class="col-lg-2 control-label">ジャンル</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control" id="pres" name="pres">
+                                    <select class="form-control" id="genre" name="genre">
                                         <option value="" selected></option>
                                         @foreach(\App\Genre::all() as $genre)
                                             <option value="{{$genre->id}}">{{$genre->name}}</option>

@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::group(['prefix' => 'search'], function () {
                 Route::get('/', 'User\TravelSearchController@index');
+                Route::post('/result', 'User\TravelSearchController@result');
             });
 
         });
