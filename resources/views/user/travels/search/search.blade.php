@@ -41,7 +41,7 @@
                                 <label for="select" class="col-lg-2 control-label">地域</label>
                                 <div class="col-lg-10">
                                     <select class="form-control" id="pres" name="pres">
-                                        <option value="" selected></option>
+                                        <option value="" selected>指定しない</option>
                                         <option value="0">北海道</option>
                                         <option value="1">東北</option>
                                         <option value="2">関東</option>
@@ -57,7 +57,7 @@
                                 <label for="select" class="col-lg-2 control-label">都道府県</label>
                                 <div class="col-lg-10">
                                     <select class="form-control" id="region" name="region">
-                                        <option value="" selected></option>
+                                        <option value="" selected>指定しない</option>
                                         <option value="北海道">北海道</option>
                                         <option value="青森県">青森県</option>
                                         <option value="岩手県">岩手県</option>
@@ -112,7 +112,7 @@
                                 <label for="select" class="col-lg-2 control-label">ジャンル</label>
                                 <div class="col-lg-10">
                                     <select class="form-control" id="genre" name="genre">
-                                        <option value="" selected></option>
+                                        <option value="" selected>指定しない</option>
                                         @foreach(\App\Genre::all() as $genre)
                                             <option value="{{$genre->id}}">{{$genre->name}}</option>
                                         @endforeach
@@ -208,7 +208,7 @@
             var selectVal = $("#pres").val();
             $('#region > option').remove();
 
-            $("#region").append($("<option>").val("").text(""));
+            $("#region").append($("<option>").val("").text("指定しない"));
 
             region[selectVal].forEach(function (val) {
                 $("#region").append($("<option>").val(val).text(val));

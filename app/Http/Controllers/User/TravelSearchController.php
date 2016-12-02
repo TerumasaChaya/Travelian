@@ -7,6 +7,7 @@ use App\User;
 use App\Travel;
 use App\TravelDetail;
 use App\Http\Requests\UserTravelPostRequest;
+use App\Prefecture;
 use Auth;
 use Response;
 use Illuminate\Http\Request;
@@ -55,17 +56,17 @@ class TravelSearchController extends Controller
 
         $keyword = $request->input('keyword');
 
+        $region = [];
+
         if( $request->input('pres') != ""){
             $region = $regions[$request->input('pres')];
         }
 
         if($request->input('region') != ""){
-
+            $region = [$request->input('region')];
         }
 
         $genreId = $request->input('genre');
-        
-        $keywordTravel = Travel::where('id',"");
 
         $genres = [];
 
@@ -73,8 +74,6 @@ class TravelSearchController extends Controller
 
         //json内のキーワードが空じゃなかったらテーブル検索
         if($keyword != ""){
-
-            $keywordTravel = Travel::where('name','like',"%{$keyword}%");
 
             //ジャンルを部分一致検索
             $keywordGenre = Genre::where('name','like',"%{$keyword}%")->get();
@@ -91,37 +90,69 @@ class TravelSearchController extends Controller
             }
         }
 
-
-
-        $region = Prefecture::whereIn('name', $json->region)->get();
+        $regionGet = Prefecture::whereIn('name', $region)->get();
 
         $regions = [];
 
-        foreach ($region as $pre){
+        foreach ($regionGet as $pre){
             foreach ($pre->travelPrefectures as $travelPrefecture){
                 $regions[] =  $travelPrefecture->travel_id;
             }
         }
 
-        $keywordGenre = Travel::whereIn('genre_id',$genres);
+        $travels = Travel::where('releaseFlg',true)
+            ->where(function($query) use ($genres,$pres,$genreId,$regions,$keyword){
+                if(!(empty($keyword))){
+                    var_dump($keyword);
+                    $query->where('name','like',"%{$keyword}%");
+                }
+                if(!(empty($pres))){
+                    var_dump($pres);
+                    $query->whereIn('id',$pres);
+                }
+                if(!(empty($genreId))){
+                    var_dump($genreId);
+                    $query->where('genre_id',$genreId);
+                }
+                if(!(empty($regions))){
+                    var_dump($regions);
+                    $query->whereIn('id',$regions);
+                }if(!(empty($genreId))){
+                    var_dump($genreId);
+                    $query->where('genre_id',$genreId);
+                }
+            })
+        ->get();
 
-        $keywordPre = Travel::whereIn('id',$pres);
+        $keyMes = "";
+        $genreMes = "";
+        $regionMes = "";
 
-        $genre = Travel::where('genre_id',$genreId);
-
-        $region = Travel::whereIn('id',$regions);
-
-        $travel = Travel::where('id',"")
-            ->union($keywordGenre)
-            ->union($keywordTravel)
-            ->union($keywordPre)
-            ->union($genre)
-            ->union($region)
-            ->get();
-
-        for ($i=0; $i <count($travel); $i++){
-            $travel[$i]->genre_id = $travel[$i]->genres->name;
+        if($request->input('keyword') != ""){
+            $keyMes = "キーワード: " . $keyword;
         }
+
+        if($request->input('genre') != ""){
+            $genreMes = "ジャンル: " . $request->input('genre');
+        }
+
+        if($request->input('pres') != ""){
+            $regionMes = "都道府県: ";
+            foreach ($region as $re){
+                $regionMes = $regionMes . $re . ",";
+            }
+        }
+
+        if($request->input('region') != ""){
+            $regionMes = "都道府県: " . $request->input('region');
+        }
+
+        return view('user.travels.search.result')
+            ->with('travels',$travels)
+            ->with('keyMes',$keyMes)
+            ->with('genreMes',$genreMes)
+            ->with('regionMes',$regionMes);
+
 
     }
 
