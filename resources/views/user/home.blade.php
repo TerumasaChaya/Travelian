@@ -115,7 +115,7 @@
                     </div>
                 @endforeach
                 <div class="col-md-12 text-center animate-box fadeInUp animated">
-                    <p><a class="btn btn-primary btn-outline btn-lg" href="#">他の旅を探しますか? <i
+                    <p><a class="btn btn-primary btn-outline btn-lg" href="/user/travel/search">他の旅を探しますか? <i
                                     class="icon-arrow-right22"></i></a></p>
                 </div>
             </div>
