@@ -427,7 +427,7 @@ class TravelController extends Controller
         $newTravel->save();
 
         //旅都道府県テーブルに都道府県を保存
-        foreach ($json->travels[0]->regions as $region){
+        foreach ($json->travel[0]->regions as $region){
             $pre = Prefecture::where('name',$region)->first();
 
             $travelPrefectures = new TravelPrefecture;
