@@ -94,6 +94,8 @@ Route::group(['middleware' => 'api'], function () {
 
             });
 
+            Route::post('send', 'Api\TravelController@sendTravel');
+
             Route::get('point', 'Api\TravelController@travelPoint');
 
         });

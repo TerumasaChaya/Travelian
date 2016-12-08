@@ -339,4 +339,103 @@ class TravelController extends Controller
 
     }
 
+    public function sendTravel(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        //ジャンルID取得
+        $genreId =  Genre::where('name',$json->travel[0]->genre_name)->first();
+        $genreId = $genreId->id;
+
+        //ユーザーID取得
+        $userID = $json->travel[0]->user_id;
+
+        //旅名取得
+        $travelName = $json->travel[0]->name;
+
+        //画像ファイル名取得
+        $imageName = $json->travel[0]->thumbnail_name;
+
+        //サムネイル画像取得
+        $miniImage = str_replace(' ', '+',$json->travel[0]->thumbnail_mini);
+        $image = str_replace(' ', '+',$json->travel[0]->thumbnail);
+
+        //画像取得
+        $travelImage = storage_path().'/image/travelImage/' . $imageName;
+        $thumbnailImage = storage_path().'/image/thumbnailImage/' . $imageName;
+
+        file_put_contents($travelImage, base64_decode($image));
+        file_put_contents($thumbnailImage,base64_decode($miniImage));
+
+        $thumbnail = $imageName;
+
+        //コメント取得
+        $comment = $json->travel[0]->comment;
+
+        //公開フラグ取得
+        $releaseFlg = $json->travel[0]->releaseFlg;
+
+        //新規旅作成
+        $newTravel = new Travel;
+
+        $newTravel->genre_id = $genreId;
+        $newTravel->user_id = $userID;
+        $newTravel->name = $travelName;
+        $newTravel->thumbnail = $thumbnail;
+        $newTravel->comment = $comment;
+        $newTravel->travelPoint = 20;
+        $newTravel->releaseFlg = $releaseFlg;
+
+        $newTravel->save();
+
+        foreach ($json->details as $details) {
+
+            //旅ID取得
+            $travelId = $newTravel->id;
+
+            //画像ファイル名取得
+            $imageName = $json->travel[0]->thumbnail_name;
+
+            //サムネイル画像取得
+            $miniImage = str_replace(' ', '+',$details->photo_mini);
+            $image = str_replace(' ', '+',$details->photo);
+
+            //画像取得
+            $travelImage = storage_path().'/image/travelImage/' . $imageName;
+            $thumbnailImage = storage_path().'/image/thumbnailImage/' . $imageName;
+
+            file_put_contents($travelImage, base64_decode($image));
+            file_put_contents($thumbnailImage,base64_decode($miniImage));
+
+            $thumbnail = $imageName;
+
+            //経度取得
+            $longitude = $details->longitude;
+
+            //緯度取得
+            $latitude = $details->latitude;
+
+            //旅詳細行登録
+            $newTravelDetail = new TravelDetail;
+
+            $newTravelDetail->travel_id = $travelId;
+            $newTravelDetail->photo = $thumbnail;
+            $newTravelDetail->longitude = $longitude;
+            $newTravelDetail->latitude = $latitude;
+
+            $newTravelDetail->save();
+
+        }
+
+        return Response::json(
+            array(
+                'status' => 'Success'
+            )
+        );
+
+    }
+
+
 }
