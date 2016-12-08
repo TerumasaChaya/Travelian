@@ -200,6 +200,32 @@ class TravelController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
+        $pointTravels = Travel::where('releaseFlg', true)
+            ->where(function ($query) use ($genres, $pres, $keyword,$keywordRegion) {
+                if (!(empty($keyword))) {
+                    $query->orwhere('name', 'like', "%{$keyword}%");
+                }
+                if (!(empty($pres))) {
+                    $query->orwhereIn('id', $pres);
+                }
+                if (!(empty($genres))) {
+                    $query->orwhereIn('genre_id', $genres);
+                }
+                if (!(empty($keywordRegion))) {
+                    $query->orwhereIn('id', $keywordRegion);
+                }
+            })
+            ->where(function ($query) use ($genreId, $regions) {
+                if (!(empty($regions))) {
+                    $query->whereIn('id', $regions);
+                }
+                if (!(empty($genreId))) {
+                    $query->where('genre_id', $genreId);
+                }
+            })
+            ->orderBy('travelPoint', 'DESC')
+            ->get();
+
         for ($i = 0; $i < count($travels); $i++) {
             $travels[$i]->genre_id = $travels[$i]->genres->name;
         }
@@ -215,7 +241,8 @@ class TravelController extends Controller
         return Response::json(
             array(
                 'status' => 'Success',
-                'travel' => $travels
+                'pointTravel' => $pointTravels,
+                'upTravel' => $travels
             )
         );
 
