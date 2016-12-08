@@ -63,6 +63,17 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
+                                        <label>都道府県
+                                        </label>
+                                        <ul class="list-group">
+                                            @foreach($travel->travelPrefectures as $pres)
+                                                <li class="list-group-item">{{$pres->prefectures->name}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
                                         <label>コメント</label>
                                         <textarea class="form-control"
                                                   name="comment" readonly>{{$travel->comment}}</textarea>

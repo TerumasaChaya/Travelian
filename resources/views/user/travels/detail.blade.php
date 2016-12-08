@@ -63,89 +63,101 @@
                                                         <input class="form-control" value="{{$travel->users->name}}"
                                                                readonly>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>ジャンル</label>
-                                                            <select name="genre" class="form-control">
-                                                                @foreach(\App\Genre::all() as $genre)
-                                                                    @if($genre->id == $travel->genre_id)
-                                                                        <option value="{{$genre->id}}"
-                                                                                label="{{$genre->name}}" selected>
-                                                                            {{$genre->name}}
-                                                                        </option>
-                                                                    @else
-                                                                        <option value="{{$genre->id}}"
-                                                                                label="{{$genre->name}}">
-                                                                            {{$genre->name}}
-                                                                        </option>
-                                                                    @endif
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>コメント</label>
-                                                            <textarea class="form-control"
-                                                                      name="comment">{{$travel->comment}}</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>Point</label>
-                                                            <input class="form-control"
-                                                                   value="{{$travel->travelPoint}}"
-                                                                   readonly
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>投稿日時</label>
-                                                            <input class="form-control"
-                                                                   value="{{$travel->created_at}}"
-                                                                   readonly
-                                                            >
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>旅の公開設定</label>
-                                                            <select name="release" class="form-control" id="release">
-                                                                <option value="1" label="公開">
-                                                                    公開
-                                                                </option>
-                                                                <option value="0" label="非公開">
-                                                                    非公開
-                                                                </option>
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <button type="button" id="send"
-                                                                class="btn btn-outline btn-success btn-lg btn-block">
-                                                            更新する
-                                                        </button>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>ジャンル</label>
+                                                        <select name="genre" class="form-control">
+                                                            @foreach(\App\Genre::all() as $genre)
+                                                                @if($genre->id == $travel->genre_id)
+                                                                    <option value="{{$genre->id}}"
+                                                                            label="{{$genre->name}}" selected>
+                                                                        {{$genre->name}}
+                                                                    </option>
+                                                                @else
+                                                                    <option value="{{$genre->id}}"
+                                                                            label="{{$genre->name}}">
+                                                                        {{$genre->name}}
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            </form>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>都道府県
+                                                        </label>
+                                                        <ul class="list-group">
+                                                            @foreach($travel->travelPrefectures as $pres)
+                                                                <li class="list-group-item">{{$pres->prefectures->name}}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>コメント</label>
+                                                        <textarea class="form-control"
+                                                                  name="comment">{{$travel->comment}}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Point</label>
+                                                        <input class="form-control"
+                                                               value="{{$travel->travelPoint}}"
+                                                               readonly
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>投稿日時</label>
+                                                        <input class="form-control"
+                                                               value="{{$travel->created_at}}"
+                                                               readonly
+                                                        >
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>旅の公開設定</label>
+                                                        <select name="release" class="form-control" id="release">
+                                                            <option value="1" label="公開">
+                                                                公開
+                                                            </option>
+                                                            <option value="0" label="非公開">
+                                                                非公開
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <button type="button" id="send"
+                                                            class="btn btn-outline btn-success btn-lg btn-block">
+                                                        更新する
+                                                    </button>
+                                                </div>
                                         </div>
+                                        </form>
                                     </div>
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
                             </div>
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                     </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
     <!--END CONTENT-->
