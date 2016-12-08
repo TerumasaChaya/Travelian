@@ -204,6 +204,14 @@ class TravelController extends Controller
             $travels[$i]->genre_id = $travels[$i]->genres->name;
         }
 
+        foreach ($travels as $item){
+            $regions = [];
+            foreach ($item->travelPrefectures as $pres){
+                $regions[] = $pres->prefectures->name;
+            }
+            $item->regions = $regions;
+        }
+
         return Response::json(
             array(
                 'status' => 'Success',
