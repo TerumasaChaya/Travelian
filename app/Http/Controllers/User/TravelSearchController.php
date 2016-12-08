@@ -195,5 +195,33 @@ class TravelSearchController extends Controller
 
     }
 
+    public function release($id)
+    {
+
+        $travelDetails = TravelDetail::where('travel_id',$id)->get();
+
+        $travel = Travel::where('id',$travelDetails[0]->travel_id)->first();
+
+        $details = [];
+
+        foreach ($travelDetails as $detail){
+            $details[] =
+                [
+                    'id'   => $detail->id,
+                    'name' => $detail->photo,
+                    'lat'  => $detail->latitude,
+                    'lng'  => $detail->longitude,
+                    'icon' => $detail->photo
+                ];
+        }
+
+        if($travelDetails[0]->travels->users->id == Auth::user()->id){
+            return view('user.travels.detail')->with('details',$details)->with('travel',$travel);
+        }else{
+            return view('user.travels.search.detail')->with('details',$details)->with('travel',$travel);
+        }
+
+    }
+
 
 }

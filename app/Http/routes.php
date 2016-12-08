@@ -58,6 +58,10 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('/result', 'User\TravelSearchController@result');
             });
 
+            Route::group(['prefix' => 'release'], function () {
+                Route::get('/detail/{id}', 'User\TravelSearchController@release');
+            });
+
         });
 
 

@@ -49,7 +49,7 @@
                                                             <h3>{{ $newTravel->name}}</h3>
                                                             <span>{{ $newTravel->created_at->format('Y年m月d日')}}</span>
                                                             <a class="btn btn-primary btn-outline"
-                                                               href="/user/travel/detail/{{ $newTravel->id}}">
+                                                               href="/user/travel/release/detail/{{ $newTravel->id}}">
                                                                 詳細を見る
                                                                 <i class="icon-arrow-right22"></i>
                                                             </a>
@@ -106,7 +106,7 @@
                                 <h3>{{ $popTravel->name}}</h3>
                                 <span>{{ $popTravel->created_at->format('Y年m月d日')}}</span>
                                 <a class="btn btn-primary btn-outline"
-                                   href="/user/travel/detail/{{ $popTravel->id}}">
+                                   href="/user/travel/release/detail/{{ $popTravel->id}}">
                                     詳細を見る
                                     <i class="icon-arrow-right22"></i>
                                 </a>
