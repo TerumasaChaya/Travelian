@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\TravelPrefecture;
 use App\User;
 use App\Travel;
 use App\TravelDetail;
@@ -397,6 +398,20 @@ class TravelController extends Controller
         $newTravel->releaseFlg = $releaseFlg;
 
         $newTravel->save();
+
+        //旅都道府県テーブルに都道府県を保存
+        foreach ($json->travels[0]->regions as $region){
+            $pre = Prefecture::where('name',$region)->first();
+
+            $travelPrefectures = new TravelPrefecture;
+
+            $travelPrefectures->travel_id = $newTravel->id;
+            $travelPrefectures->prefecture_id = $pre->id;
+
+            $travelPrefectures->save();
+
+        }
+
 
         foreach ($json->details as $details) {
 
