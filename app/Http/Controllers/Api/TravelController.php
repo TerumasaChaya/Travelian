@@ -404,7 +404,7 @@ class TravelController extends Controller
             $travelId = $newTravel->id;
 
             //画像ファイル名取得
-            $imageName = $json->travel[0]->thumbnail_name;
+            $imageName = $details->photo_name;
 
             //サムネイル画像取得
             $miniImage = str_replace(' ', '+',$details->photo_mini);
