@@ -17,7 +17,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <div class="panel panel-warning">
                 <div class="panel-heading ">
                     <i class="fa fa-tag fa-fw"></i>Genres
@@ -29,7 +29,6 @@
                             <tr>
                                 <th class="col-lg-6">Name</th>
                                 <th class="col-lg-3">Point</th>
-                                <th class="col-lg-3">Created Date</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,8 +38,6 @@
                                         {{$genre->name}}
                                     </td>
                                     <td>{{$genre->genrePoint}}</td>
-                                    <td>{{$genre->created_at}}</td>
-
                                 </tr>
                             @endforeach
                             </tbody>
@@ -52,4 +49,31 @@
                 {!! $genres->render() !!}
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <i class="fa fa-tag fa-fw"></i>Add Gerne
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Genre Name</label>
+                                <input class="form-control"
+                                       value=""
+                                >
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <button type="button" id="send"
+                                    class="btn btn-outline btn-warning btn-lg btn-block">
+                                Gerne Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 @endsection
