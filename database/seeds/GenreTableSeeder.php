@@ -27,7 +27,7 @@ class GenreTableSeeder extends Seeder
             'id'    => 2,
             'name' => '聖地巡礼',
             'kana' => 'せいちじゅんれい',
-            'genrePoint'    => 10,
+            'genrePoint'    => 40,
             'created_at'    => Carbon::now(-24)->toDateTimeString(),
             'updated_at'    => Carbon::now(-24)->toDateTimeString()
         ]);
@@ -52,7 +52,7 @@ class GenreTableSeeder extends Seeder
 
         DB::table('genres')->insert([
             'id'    => 5,
-            'name' => 'ふらり旅',
+            'name' => 'ぶらり旅',
             'kana' => 'ぶらりたび',
             'genrePoint'    => 11,
             'created_at'    => Carbon::now(-48)->toDateTimeString(),
