@@ -98,7 +98,10 @@ Route::group(['middleware' => 'api'], function () {
 
             });
 
-            Route::post('send', 'Api\TravelController@sendTravel');
+            Route::group(['prefix' => 'send'], function () {
+                Route::post('travel', 'Api\TravelController@sendTravel');
+                Route::post('photo', 'Api\TravelController@sendPhoto');
+            });
 
             Route::get('point', 'Api\TravelController@travelPoint');
 

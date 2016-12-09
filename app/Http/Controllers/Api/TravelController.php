@@ -406,17 +406,6 @@ class TravelController extends Controller
         //画像ファイル名取得
         $imageName = $json->travel[0]->thumbnail_name;
 
-        //サムネイル画像取得
-        $miniImage = str_replace(' ', '+',$json->travel[0]->thumbnail_mini);
-        $image = str_replace(' ', '+',$json->travel[0]->thumbnail);
-
-        //画像取得
-        $travelImage = storage_path().'/image/travelImage/' . $imageName;
-        $thumbnailImage = storage_path().'/image/thumbnailImage/' . $imageName;
-
-        file_put_contents($travelImage, base64_decode($image));
-        file_put_contents($thumbnailImage,base64_decode($miniImage));
-
         $thumbnail = $imageName;
 
         //コメント取得
@@ -460,17 +449,6 @@ class TravelController extends Controller
             //画像ファイル名取得
             $imageName = $details->photo_name;
 
-            //サムネイル画像取得
-            $miniImage = str_replace(' ', '+',$details->photo_mini);
-            $image = str_replace(' ', '+',$details->photo);
-
-            //画像取得
-            $travelImage = storage_path().'/image/travelImage/' . $imageName;
-            $thumbnailImage = storage_path().'/image/thumbnailImage/' . $imageName;
-
-            file_put_contents($travelImage, base64_decode($image));
-            file_put_contents($thumbnailImage,base64_decode($miniImage));
-
             $thumbnail = $imageName;
 
             //経度取得
@@ -490,6 +468,34 @@ class TravelController extends Controller
             $newTravelDetail->save();
 
         }
+
+        return Response::json(
+            array(
+                'status' => 'Success'
+            )
+        );
+
+    }
+
+    public function sendPhoto(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        //画像ファイル名取得
+        $imageName = $json->photo_name;;
+
+        //サムネイル画像取得
+        $miniImage = str_replace(' ', '+',$json->photo_mini);
+        $image = str_replace(' ', '+',$json->photo);
+
+        //画像取得
+        $travelImage = storage_path().'/image/travelImage/' . $imageName;
+        $thumbnailImage = storage_path().'/image/thumbnailImage/' . $imageName;
+
+        file_put_contents($travelImage, base64_decode($image));
+        file_put_contents($thumbnailImage,base64_decode($miniImage));
 
         return Response::json(
             array(
