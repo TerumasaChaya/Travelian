@@ -45,35 +45,47 @@
                     </div>
                 </div>
             </div>
-            <div class="text-right">
+            <div class="text-center">
                 {!! $genres->render() !!}
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <i class="fa fa-tag fa-fw"></i>Add Gerne
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Genre Name</label>
-                                <input class="form-control"
-                                       value=""
-                                >
+            <form role="form" method="POST" id="confirm"
+                  action="/admin/genres/confirm">
+                {{csrf_field()}}
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <i class="fa fa-tag fa-fw"></i>Add Gerne
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Genre Name</label>
+                                    <input class="form-control" name="name"
+                                           value=""
+                                    >
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button type="button" id="send"
-                                    class="btn btn-outline btn-warning btn-lg btn-block">
-                                Gerne Add
-                            </button>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Genre Kana Name</label>
+                                    <input class="form-control" name="kana_name"
+                                           value=""
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit"
+                                        class="btn btn-outline btn-warning btn-lg btn-block">
+                                    Gerne Add
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
 @endsection
