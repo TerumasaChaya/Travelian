@@ -53,8 +53,7 @@
                                                         <h3><a href="#"></a>{{ $travel->name}}</h3>
                                                         <h4>ジャンル: {{$travel->genres->name}}</h4>
                                                         <span class="posted_by">{{ $travel->created_at->format('Y年m月d日')}}</span>
-                                                        <span class="comment"><a href="">{{ $travel->travelPoint}}<i
-                                                                        class="icon-point-up"></i></a></span>
+                                                        <span class="comment">{{ $travel->travelPoint}}<i class="icon-point-up"></i></span>
                                                         <p>{{ $travel->comment}}</p>
                                                         <p><a href="/user/travel/detail/{{ $travel->id}}">もっと見る</a></p>
                                                     </div>
