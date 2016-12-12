@@ -30,17 +30,17 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active">
-                                <a href="#flights" aria-controls="flights" role="tab"
+                                <a href="#flights" aria-controls="flights" role="tab" id="release"
                                    data-toggle="tab">公開している旅</a>
                             </li>
-                            <li role="presentation">
-                                <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">非公開にしている旅</a>
+                            <li role="presentation" >
+                                <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab" id="hide">非公開にしている旅</a>
                             </li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="flights">
+                            <div role="tabpanel" class="tab-pane releaseTab active" id="flights">
                                 <div class="row">
                                     @foreach($releaseTravels as $travel)
                                         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -65,12 +65,12 @@
                                         </div>
                                     @endforeach
                                     <div class="text-center">
-                                            {!! $releaseTravels->render() !!}
+                                            {!! $releaseTravels->appends(['type' => 'release'])->render() !!}
                                     </div>
                                 </div>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane" id="hotels">
+                            <div role="tabpanel" class="tab-pane hideTab" id="hotels">
                                 <div class="row">
                                     @foreach($hideTravels as $travel)
                                         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -95,7 +95,7 @@
                                         </div>
                                     @endforeach
                                         <div class="text-center">
-                                            {!! $hideTravels->render() !!}
+                                            {!! $hideTravels->appends(['type' => 'hide'])->render() !!}
                                         </div>
                                 </div>
                             </div>
@@ -110,6 +110,69 @@
 
 @section('page-js')
     <script type="text/javascript">
+
+        (function($){
+            var queries = (function(){
+                var s = location.search.replace("?", ""),
+                        query = {},
+                        queries = s.split("&"),
+                        i = 0;
+
+                if(!s) return null;
+
+                for(i; i < queries.length; i ++) {
+                    var t = queries[i].split("=");
+                    query[t[0]] = t[1];
+                }
+                return query;
+            })();
+
+            $.queryParameter = function(key) {
+                return (queries == null ? null : queries[key] ? queries[key] : null);
+            };
+        })(jQuery);
+
+        $(function () {
+            var type =  $.queryParameter("type");
+
+            if (type == "release") {
+
+                var hideTitle = $('#hide');
+                var releaseTitle = $('#release');
+
+                hideTitle.parent().removeClass('active');
+                releaseTitle.parent().addClass('active');
+
+                hideTitle.attr('aria-expanded','false');
+                releaseTitle.attr('aria-expanded','true');
+
+                var hide = $('.hideTab');
+                var release = $('.releaseTab');
+
+                hide.removeClass('active');
+                release.addClass('active');
+
+            }else if(type == 'hide'){
+
+                var hideTitle = $('#hide');
+                var releaseTitle = $('#release');
+
+                hideTitle.parent().addClass('active');
+                releaseTitle.parent().removeClass('active');
+
+                hideTitle.attr('aria-expanded','true');
+                releaseTitle.attr('aria-expanded','false');
+
+                var hide = $('.hideTab');
+                var release = $('.releaseTab');
+
+                hide.addClass('active');
+                release.removeClass('active');
+
+            }
+
+
+        });
 
     </script>
 @endsection
