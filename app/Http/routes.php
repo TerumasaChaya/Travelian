@@ -134,6 +134,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
         Route::group(['prefix' => 'genres'], function() {
             Route::get('/', 'Admin\GenreController@index');
+            Route::post('/confirm', 'Admin\GenreController@confirm');
+            Route::post('/complete', 'Admin\GenreController@complete');
         });
 
         Route::group(['prefix' => 'users'], function() {
