@@ -85,7 +85,7 @@
                         <fieldset>
                             <legend>Top 5</legend>
                             <div class="form-group">
-                                <table class="table table-striped table-hover ">
+                                <table class="table table-striped table-hover genre">
                                     <tbody>
                                     <tr class="danger">
                                         <td class="text-center">{{$popGenre[0]->name}}</td>
@@ -170,4 +170,21 @@
         });
 
     </script>
+
+    <script>
+
+        $(function() {
+            $('.genre td').click(function(event){
+                var genre = $(event.currentTarget.innerHTML).selector;
+                var select = $('#genre').children();
+                for( var i=0; i<select.length; i++ ){
+                    if ( genre == select.eq(i).text() ) {
+                        $('#genre').val(select.eq(i).val());
+                    }
+                }
+            });
+        });
+
+    </script>
+
 @endsection
