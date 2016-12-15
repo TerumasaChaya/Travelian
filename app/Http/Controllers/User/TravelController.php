@@ -16,9 +16,9 @@ class TravelController extends Controller
     public function index()
     {
 
-        $releaseTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',true)->paginate(6);
+        $releaseTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',true)->orderBy('created_at','DESC')->paginate(6);
 
-        $hideTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',false)->paginate(6);
+        $hideTravels = Travel::where('user_id',Auth::user()->id)->where('releaseFlg',false)->orderBy('created_at','DESC')->paginate(6);
 
         //view に 値を渡す
         return view("user.travels.travel")->with('releaseTravels',$releaseTravels)->with('hideTravels',$hideTravels);
