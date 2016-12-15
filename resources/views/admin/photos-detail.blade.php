@@ -83,10 +83,31 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
+                        <div class="panel-body">
+
+                            <button type="button"data-toggle="modal" data-target="#myModal" class="btn btn-outline btn-danger btn-lg btn-block">Photo Delete</button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">写真削除確認</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            写真は一度削除すると元に戻せません。<br>
+                                            本当に削除しますか?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button type="button" id="send" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <form role="form" method="POST" id="delete" action="{{ url('admin/photos/delete') }}">
                             <input name="id" type="hidden" value="{{$detail->id}}">
                             {{csrf_field()}}
-                            <button type="button" id="send" class="btn btn-outline btn-danger btn-lg btn-block">Photo Delete</button>
                         </form>
                     </div>
                 </div>
@@ -101,7 +122,6 @@
 @section('page-js')
 
     <script type="text/javascript">
-
 
         $(document).on('click', '#send', function(){
             $('#delete').submit();
