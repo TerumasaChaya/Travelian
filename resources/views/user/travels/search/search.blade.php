@@ -17,15 +17,15 @@
     <div id="fh5co-tours" class="fh5co-section-gray">
         <div class="container">
             <div class="row">
-                <div class="col-xs-8 subtitle heading-section animate-box fadeInUp animated">
+                <div class="col-lg-8 col-xs-12 subtitle heading-section animate-box fadeInUp animated">
                     <h2>検索フォーム</h2>
                     <p>公開されている旅を検索することができます。</p>
                 </div>
-                <div class="col-xs-4 subtitle heading-section animate-box fadeInUp animated">
+                <div class="col-lg-4 col-xs-12 subtitle heading-section animate-box fadeInUp animated">
                     <h2>人気ジャンル</h2>
                     <p>いまホットなジャンルです。</p>
                 </div>
-                <div class="col-lg-8 animate-box fadeInDown animated">
+                <div class="col-lg-8 col-xs-12 animate-box fadeInDown animated">
                     <form class="form-horizontal" action="/user/travel/search/result" method="POST">
                         {{csrf_field()}}
                         <fieldset>
@@ -80,7 +80,7 @@
                         </fieldset>
                     </form>
                 </div>
-                <div class="col-lg-4 animate-box fadeInDown animated">
+                <div class="col-lg-4 col-xs-12 animate-box fadeInDown animated">
                     <form class="form-horizontal">
                         <fieldset>
                             <legend>Top 5</legend>
