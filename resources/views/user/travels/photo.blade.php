@@ -8,7 +8,7 @@
 
 @endsection
 @section('content')
-    <section class="section section-inverse point">
+    <div id="fh5co-tours" class="fh5co-section-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5">
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
 
 @section('page-js')
