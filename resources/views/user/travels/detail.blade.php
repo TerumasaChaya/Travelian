@@ -232,9 +232,7 @@
         // マーカーにクリックイベントを追加
         function markerEvent(i) {
             if (markerData[i]['icon'] == "") {
-                marker[i].addListener('click', function () { // マーカーをクリックしたとき
-                    window.location.href = "/user/travel/detail/" + markerData[i]['id'];
-                });
+
             } else {
                 marker[i].addListener('click', function () { // 画像をクリックしたとき
                     window.location.href = "/user/photos/" + markerData[i]['id'];
