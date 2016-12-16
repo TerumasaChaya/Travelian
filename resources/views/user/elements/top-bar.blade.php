@@ -13,7 +13,7 @@
                         <li><a href="/user/travel">旅</a></li>
                         <li><a href="/user/travel/search">旅の検索</a></li>
                         <li>
-                            <a class="fh5co-sub-ddown">{{Auth::user()->name}}<span class="small">さん</span></a>
+                            <a class="fh5co-sub-ddown">{{mb_strimwidth(Auth::user()->name, 0, 10, "...")}}<span class="small">さん</span></a>
                             <ul class="fh5co-sub-menu">
                                 <li><a href="/logout">ログアウト</a></li>
                             </ul>
