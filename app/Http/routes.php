@@ -64,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         });
 
+        Route::group(['prefix' => 'genre'], function () {
+            Route::get('/detail/{id}', 'User\GenreController@detail');
+        });
+
 
     });
 });

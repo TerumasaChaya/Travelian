@@ -131,28 +131,28 @@
                 <div class="col-md-12">
                     <ul id="fh5co-destination-list" class="animate-box fadeInUp animated">
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-1.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[0]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[0]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-2.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[1]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[1]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-3.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[2]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[2]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-4.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[3]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[3]->name}}</h2>
                                 </div>
@@ -160,7 +160,7 @@
                         </li>
 
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-5.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[4]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[4]->name}}</h2>
                                 </div>
@@ -175,35 +175,35 @@
                             </div>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-6.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[5]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[5]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-7.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[6]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[6]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-8.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[7]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[7]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-9.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[8]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[8]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-10.jpg); ">
-                            <a href="#">
+                            <a href="/user/genre/detail/{{$popularGenre[9]->id}}">
                                 <div class="case-studies-summary">
                                     <h2>{{$popularGenre[9]->name}}</h2>
                                 </div>
