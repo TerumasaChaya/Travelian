@@ -12,7 +12,8 @@
     <div class="fh5co-hero">
         <div class="fh5co-overlay"></div>
         <div class="fh5co-cover" data-stellar-background-ratio="0.5"
-             style="background-image: url(//travel/images/d5c2370b8c3acc492065c9a2af340f68.jpg);">
+             style="background-image: url(/travel/images/title01.png);">
+
             <div class="desc">
                 <div class="container">
                     <div class="row">
@@ -25,6 +26,7 @@
                                         <a href="#flights" aria-controls="flights" role="tab"
                                            data-toggle="tab">新着の旅</a>
                                     </li>
+                                    <!--
                                     <li role="presentation">
                                         <a href="#hotels" aria-controls="hotels" role="tab"
                                            data-toggle="tab">タイトルが入る</a>
@@ -32,6 +34,7 @@
                                     <li role="presentation">
                                         <a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">タイトルが入る</a>
                                     </li>
+                                    -->
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -130,28 +133,28 @@
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-1.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[0]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-2.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[1]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-3.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[2]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-4.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[3]->name}}</h2>
                                 </div>
                             </a>
                         </li>
@@ -159,7 +162,7 @@
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-5.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[4]->name}}</h2>
                                 </div>
                             </a>
                         </li>
@@ -167,42 +170,42 @@
                             <div class="title-bg">
                                 <div class="case-studies-summary">
                                     <h2>Most Popular Genres</h2>
-                                    <span><a href="#">全てのジャンルを表示</a></span>
+                                    <!-- <span><a href="#">全てのジャンルを表示</a></span> -->
                                 </div>
                             </div>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-6.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[5]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-7.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[6]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-8.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[7]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-9.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[8]->name}}</h2>
                                 </div>
                             </a>
                         </li>
                         <li class="one-forth text-center" style="background-image: url(/travel/images/place-10.jpg); ">
                             <a href="#">
                                 <div class="case-studies-summary">
-                                    <h2>ジャンル名が入る</h2>
+                                    <h2>{{$popularGenre[9]->name}}</h2>
                                 </div>
                             </a>
                         </li>
