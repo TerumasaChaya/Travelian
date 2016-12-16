@@ -13,7 +13,7 @@
 
     <!-- Containers
     ================================================== -->
-    <section class="section section-default point">
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
         <div class="container">
             <div class="row">
                 <div class="bs-component">
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <!--END CONTENT-->
 @endsection
 
