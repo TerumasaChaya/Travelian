@@ -1,7 +1,7 @@
 @extends('user.elements.basic')
 
 @section('title')
-    共有記
+    共遊記
 @endsection
 
 @section('content-header')

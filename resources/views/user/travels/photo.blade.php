@@ -1,7 +1,7 @@
 @extends('user.elements.basic')
 
 @section('title')
-    共有記
+    共遊記
 @endsection
 
 @section('content-header')
@@ -31,13 +31,11 @@
                             <div class="form-group">
                                 <div class="col-lg-6">
                                     <label>旅名</label>
-                                        <a href="/user/travel/{{$detail->travels->id}}">
-                                            <input class="form-control" value="{{$detail->travels->name}}" readonly>
-                                        </a>
+                                    <input class="form-control" value="{{$detail->travels->name}}" readonly>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>ユーザー名</label>
-                                        <input class="form-control" value="{{$detail->travels->users->name}}" readonly>
+                                    <input class="form-control" value="{{$detail->travels->users->name}}" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-12">

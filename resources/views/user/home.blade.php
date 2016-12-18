@@ -1,7 +1,7 @@
 @extends('user.elements.basic')
 
 @section('title')
-    共有記
+    共遊記
 @endsection
 
 @section('content')
@@ -79,8 +79,8 @@
                         </div>
                         <div class="desc2 animate-box fadeInUp animated">
                             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-                                <h2>ようこそ！共有記へ！</h2>
-                                <p>このサイトはアプリ共遊記と連携しています。</p>
+                                <h2>ようこそ！共遊記へ！</h2>
+                                <p>このサイトはアプリ"共遊記"と連携しています。</p>
                             </div>
                         </div>
                     </div>
