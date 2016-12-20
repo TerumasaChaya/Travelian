@@ -126,8 +126,6 @@
             // マーカー毎の処理
             for (var i = 0; i < markerData.length; i++) {
 
-                polyline[i] = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']});
-
                 if (markerData[i]['icon'] != "") {
                     var image = {
                         url: "{{Request::root()}}" + "/image/travelImage/" + markerData[i]['icon'],// マーカーの画像
@@ -141,6 +139,8 @@
                         map: map,// マーカーを立てる地図を指定
                         icon: image
                     });
+                }else{
+                    polyline.push(new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}));
                 }
                 markerEvent(i); // マーカーにクリックイベントを追加
             }
