@@ -128,13 +128,7 @@
 
                 polyline[i] = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']});
 
-                if (markerData[i]['icon'] == "") {
-                    markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
-                    marker[i] = new google.maps.Marker({ // マーカーの追加
-                        position: markerLatLng, // マーカーを立てる位置を指定
-                        map: map // マーカーを立てる地図を指定
-                    });
-                } else {
+                if (markerData[i]['icon'] != "") {
                     var image = {
                         url: "{{Request::root()}}" + "/image/travelImage/" + markerData[i]['icon'],// マーカーの画像
                         // This marker is 20 pixels wide by 32 pixels high.
