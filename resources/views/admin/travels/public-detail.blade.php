@@ -156,9 +156,7 @@
         // マーカーにクリックイベントを追加
         function markerEvent(i) {
             if (markerData[i]['icon'] == "") {
-                marker[i].addListener('click', function () { // マーカーをクリックしたとき
-                    window.location.href = "/admin/travel/detail/" + markerData[i]['id'];
-                });
+              
             } else {
                 marker[i].addListener('click', function () { // マーカーをクリックしたとき
                     window.location.href = "/admin/photos/" + markerData[i]['id'];
