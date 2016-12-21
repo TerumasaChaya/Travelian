@@ -40,7 +40,7 @@ background: -webkit-radial-gradient(rgb(241, 196, 15), rgb(243, 156, 18));
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- End Login box -->
 <footer class="container">
-    <p id="footer-text"><small>Copyright &copy; 2016 <a href="http://ad-says.com/">Travelial</a></small></p>
+    <p id="footer-text"><small>Copyright &copy; 2016 Travelial</small></p>
 </footer>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
