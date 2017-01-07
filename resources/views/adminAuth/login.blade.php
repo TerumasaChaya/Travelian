@@ -1,69 +1,225 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated login form</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-@section('content')
-    <div class="container">
-        <h1 class="well">Admin Login</h1>
-        <div class="col-lg-12 well">
-            <div class="row">
-                <form role="form" method="POST" id="login" action="{{ url('admin/login') }}">
-                    {{ csrf_field() }}
-                    <div class="col-sm-6 form-group">
-                        <label>Email</label>
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
-                               placeholder="Email..">
-                        @if ($errors->has('email'))
-                            <span class="help-block">
+
+    <style>
+        /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+        body {
+            font-family: "Open Sans", sans-serif;
+            height: 100vh;
+            background: url("http://i.imgur.com/HgflTDf.jpg") 50% fixed;
+            background-size: cover;
+        }
+
+        @keyframes spinner {
+            0% {
+                transform: rotateZ(0deg);
+            }
+            100% {
+                transform: rotateZ(359deg);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            min-height: 100%;
+            padding: 20px;
+            background: rgba(4, 40, 68, 0.85);
+        }
+
+        .login {
+            border-radius: 2px 2px 5px 5px;
+            padding: 10px 20px 20px 20px;
+            width: 90%;
+            max-width: 320px;
+            background: #ffffff;
+            position: relative;
+            padding-bottom: 80px;
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .login.loading button {
+            max-height: 100%;
+            padding-top: 50px;
+        }
+
+        .login.loading button .spinner {
+            opacity: 1;
+            top: 40%;
+        }
+
+        .login.ok button {
+            background-color: #8bc34a;
+        }
+
+        .login.ok button .spinner {
+            border-radius: 0;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            height: 20px;
+            animation: none;
+            transform: rotateZ(-45deg);
+        }
+
+        .login input {
+            display: block;
+            padding: 15px 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            transition: border-width 0.2s ease;
+            border-radius: 2px;
+            color: #ccc;
+        }
+
+        .login input + i.fa {
+            color: #fff;
+            font-size: 1em;
+            position: absolute;
+            margin-top: -47px;
+            opacity: 0;
+            left: 0;
+            transition: all 0.1s ease-in;
+        }
+
+        .login input:focus {
+            outline: none;
+            color: #444;
+            border-color: #2196F3;
+            border-left-width: 35px;
+        }
+
+        .login input:focus + i.fa {
+            opacity: 1;
+            left: 30px;
+            transition: all 0.25s ease-out;
+        }
+
+        .login a {
+            font-size: 0.8em;
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        .login .title {
+            color: #444;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0 30px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .login button {
+            width: 100%;
+            height: 100%;
+            padding: 10px 10px;
+            background: #2196F3;
+            color: #fff;
+            display: block;
+            border: none;
+            margin-top: 20px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            max-height: 60px;
+            border: 0px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 2px 2px;
+            transform: rotateZ(0deg);
+            transition: all 0.1s ease-out;
+            border-bottom-width: 7px;
+        }
+
+        .login button .spinner {
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            border: 4px solid #ffffff;
+            border-top-color: rgba(255, 255, 255, 0.3);
+            border-radius: 100%;
+            left: 50%;
+            top: 0;
+            opacity: 0;
+            margin-left: -20px;
+            margin-top: -20px;
+            animation: spinner 0.6s infinite linear;
+            transition: top 0.3s 0.3s ease, opacity 0.3s 0.3s ease, border-radius 0.3s ease;
+            box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .login:not(.loading) button:hover {
+            box-shadow: 0px 1px 3px #2196F3;
+        }
+
+        .login:not(.loading) button:focus {
+            border-bottom-width: 4px;
+        }
+
+        footer {
+            display: block;
+            padding-top: 50px;
+            text-align: center;
+            color: #ddd;
+            font-weight: normal;
+            text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+            font-size: 0.8em;
+        }
+
+        footer a, footer a:link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <form class="login" role="form" method="POST" id="login" action="{{ url('admin/login') }}">
+        {{ csrf_field() }}
+        <p class="title">Log in</p>
+        <input id="email" type="email" name="email" value="{{ old('email') }}"
+               placeholder="Email.." autofocus>
+        <i class="fa fa-user"></i>
+        @if ($errors->has('email'))
+            <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
-                        @endif
-                    </div>
-                    <div class="col-sm-6 form-group">
-                        <label>Password</label>
-                        <input id="password" type="password" class="form-control" name="password"
-                               placeholder="Password..">
-                        @if ($errors->has('password'))
-                            <span class="help-block">
+        @endif
+        <input id="password" type="password" name="password"
+               placeholder="Password..">
+        <i class="fa fa-key"></i>
+        @if ($errors->has('password'))
+            <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
-                        @endif
-                    </div>
-                </form>
-            </div>
+        @endif
+        <button id="submit">
+            <i class="spinner"></i>
+            <span class="state">Log in</span>
+        </button>
+    </form>
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <button type="button" id="submit" class="btn btn-block btn-info">Login</button>
-                </div>
-            </div>
-            <div class="or-text">
-                <div class="or-text-row">
-                    <div class="or-text-line">
-                        <button type="button" class="btn btn-default btn-circle" disabled="disabled">or</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <a href="/login">
-                        <button type="button" class="btn btn-block btn-primary"><i class="fa fa-user-circle"></i>User
-                            Account Login
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+</body>
+</html>
 
-@section('js-footer')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#submit').click(function () {
-                $('#login').submit();
-            });
-        });
-
-    </script>
-
-@endsection
