@@ -28,6 +28,13 @@ class Travel extends Model
 
     }
 
+    //belongsTo設定
+    public function groups()
+    {
+        return $this->belongsTo('App\Group','group_id');
+
+    }
+
     //hasMany設定
     public function genres()
     {

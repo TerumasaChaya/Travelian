@@ -19,4 +19,12 @@ class Group extends Model
         return $this->hasMany('App\User');
 
     }
+
+    //hasMany設定
+    public function travels()
+    {
+        return $this->belongsTo('App\Travel','id','group_id');
+
+    }
+
 }
