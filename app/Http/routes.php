@@ -116,6 +116,10 @@ Route::group(['middleware' => 'api'], function () {
             Route::get('point', 'Api\TravelController@genrePoint');
         });
 
+        Route::group(['prefix' => 'group'], function () {
+            Route::get('groupList', 'Api\GroupController@groupList');
+        });
+
     });
 
 });

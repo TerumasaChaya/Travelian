@@ -27,4 +27,11 @@ class Group extends Model
 
     }
 
+    //hasMany設定
+    public function groupMembers()
+    {
+        return $this->hasMany('App\GroupMember');
+
+    }
+
 }
