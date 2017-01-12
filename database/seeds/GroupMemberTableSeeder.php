@@ -19,6 +19,7 @@ class GroupMemberTableSeeder extends Seeder
             'user_id'   => 1,
             'group_id'   => 1,
             'leaderFlg'  => false,
+            'requestFlg' => true,
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -28,6 +29,7 @@ class GroupMemberTableSeeder extends Seeder
             'user_id'   => 2,
             'group_id'   => 2,
             'leaderFlg'  => true,
+            'requestFlg' => true,
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -37,6 +39,7 @@ class GroupMemberTableSeeder extends Seeder
             'user_id'   => 3,
             'group_id'   => 2,
             'leaderFlg'  => true,
+            'requestFlg' => true,
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -46,6 +49,7 @@ class GroupMemberTableSeeder extends Seeder
             'user_id'   => 1,
             'group_id'   => 3,
             'leaderFlg'  => false,
+            'requestFlg' => true,
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);

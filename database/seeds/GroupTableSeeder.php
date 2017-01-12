@@ -17,6 +17,7 @@ class GroupTableSeeder extends Seeder
         DB::table('groups')->insert([
             'id'    => 1,
             'name' => '卒業旅行グループ',
+            'deadLineFlg' => true,
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString()
         ]);
@@ -24,6 +25,7 @@ class GroupTableSeeder extends Seeder
         DB::table('groups')->insert([
             'id'    => 2,
             'name' => '聖地巡礼グループ',
+            'deadLineFlg' => true,
             'created_at'    => Carbon::now(-24)->toDateTimeString(),
             'updated_at'    => Carbon::now(-24)->toDateTimeString()
         ]);
@@ -31,6 +33,7 @@ class GroupTableSeeder extends Seeder
         DB::table('groups')->insert([
             'id'    => 3,
             'name' => '食べ歩きグループ',
+            'deadLineFlg' => true,
             'created_at'    => Carbon::now(-48)->toDateTimeString(),
             'updated_at'    => Carbon::now(-48)->toDateTimeString()
         ]);
