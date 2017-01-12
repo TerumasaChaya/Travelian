@@ -118,7 +118,7 @@ Route::group(['middleware' => 'api'], function () {
 
         Route::group(['prefix' => 'group'], function () {
             Route::get('groupList', 'Api\GroupController@groupList');
-            Route::post('make', 'Api\GroupController@groupMake');
+            Route::post('make', 'Api\GroupController@makeGroup');
         });
 
     });
