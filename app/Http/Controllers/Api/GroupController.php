@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use App\GroupMember;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Travel;
@@ -39,6 +40,42 @@ class GroupController extends Controller
                 'list'   => $response
             )
         );
+    }
+
+    public function makeGroup(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupName = $json->group_name;
+        $user = User::where('id',$json->user_id)->first();
+
+        //グループ作成
+        $newGroup = new Group;
+
+        $newGroup->name = $groupName;
+        $newGroup->deadLineFlg = true;
+
+        $newGroup->save();
+
+        //グループメンバー登録
+        $newGroupMembers = new GroupMember;
+
+        $newGroupMembers->user_id = $user->id;
+        $newGroupMembers->group_id = $newGroup->id;
+        $newGroupMembers->leaderFlg = true;
+        $newGroupMembers->requestFlg = false;
+
+        $newGroupMembers->save();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'group'   => $newGroup
+            )
+        );
+
     }
 
 }
