@@ -79,4 +79,51 @@ class GroupController extends Controller
 
     }
 
+    public function request(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+        $userId = $json->user_id;
+
+        //グループメンバー登録
+        $newGroupMembers = new GroupMember;
+
+        $newGroupMembers->user_id = $userId;
+        $newGroupMembers->group_id = $groupId;
+        $newGroupMembers->leaderFlg = false;
+        $newGroupMembers->requestFlg = true;
+
+        $newGroupMembers->save();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+            )
+        );
+
+    }
+
+    public function requestCancel(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+        $userId = $json->user_id;
+
+        //グループメンバー削除
+        GroupMember::where('user_id',$userId)->where('group_id',$groupId)->delete();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+            )
+        );
+
+    }
+
 }
