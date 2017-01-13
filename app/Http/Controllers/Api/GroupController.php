@@ -26,6 +26,7 @@ class GroupController extends Controller
 
                 if($item->leaderFlg){
                     $response[] = [
+                        'group_id' => $item->groups->id,
                         'group_name' => $item->groups->name,
                         'leader_name' => $item->users->name
                     ];
