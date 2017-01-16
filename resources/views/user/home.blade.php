@@ -17,66 +17,6 @@
             <div class="desc">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-5 col-md-5">
-                            <div class="tabulation animate-box fadeInUp animated">
-
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active">
-                                        <a href="#flights" aria-controls="flights" role="tab"
-                                           data-toggle="tab">新着の旅</a>
-                                    </li>
-                                    <!--
-                                    <li role="presentation">
-                                        <a href="#hotels" aria-controls="hotels" role="tab"
-                                           data-toggle="tab">タイトルが入る</a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">タイトルが入る</a>
-                                    </li>
-                                    -->
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="flights">
-                                        <div class="row">
-                                            @foreach(\App\Travel::where('releaseFlg',true)->orderBy('created_at','DESC')->limit(2)->get() as $newTravel)
-                                                <div class="col-md-12 col-sm-12 fh5co-tours animate-box fadeInUp animated"
-                                                     data-animate-effect="fadeIn">
-                                                    <div href="#"><img
-                                                                src="{{action(ImageController::class.'@travelImage',['name' => $newTravel->thumbnail])}}"
-                                                                class="img-responsive">
-                                                        <div class="desc">
-                                                            <span></span>
-                                                            <h3>{{ $newTravel->name}}</h3>
-                                                            <span>{{ $newTravel->created_at->format('Y年m月d日')}}</span>
-                                                            <a class="btn btn-primary btn-outline"
-                                                               href="/user/travel/release/detail/{{ $newTravel->id}}">
-                                                                詳細を見る
-                                                                <i class="icon-arrow-right22"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-
-                                    <div role="tabpanel" class="tab-pane" id="hotels">
-                                        <div class="row">
-
-                                        </div>
-                                    </div>
-
-                                    <div role="tabpanel" class="tab-pane" id="packages">
-                                        <div class="row">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <img src="/webImage/title.png" class="img-responsive"> -->
-                        </div>
                         <div class="desc2 animate-box fadeInUp animated">
                             <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
                                 <h2>ようこそ！共遊記へ！</h2>
