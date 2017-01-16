@@ -43,6 +43,9 @@
                     </div>
                 @endforeach
             </div>
+            <div class="text-center">
+                {!! $travels->render() !!}
+            </div>
         </div>
     </div>
 

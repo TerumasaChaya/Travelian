@@ -160,7 +160,7 @@ class TravelSearchController extends Controller
                 }
             })
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(6);
 
         $keyMes = "";
         $genreMes = "";
