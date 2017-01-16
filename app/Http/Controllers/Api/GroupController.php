@@ -126,4 +126,28 @@ class GroupController extends Controller
 
     }
 
+    public function memberList(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+
+        //未承認グループメンバー
+        $requestMember = GroupMember::where('group_id',$groupId)->where('requestFlg',false)->get();
+
+        //承認済みグループメンバー
+        $acceptMember = GroupMember::where('group_id',$groupId)->where('requestFlg',true)->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'request_member' => $requestMember,
+                'accept_member' => $acceptMember
+            )
+        );
+
+    }
+
 }

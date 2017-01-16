@@ -119,6 +119,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::group(['prefix' => 'group'], function () {
             Route::get('groupList', 'Api\GroupController@groupList');
             Route::post('make', 'Api\GroupController@makeGroup');
+            Route::post('memberList', 'Api\GroupController@memberList');
 
             Route::group(['prefix' => 'request'], function () {
                 Route::post('send', 'Api\GroupController@request');
