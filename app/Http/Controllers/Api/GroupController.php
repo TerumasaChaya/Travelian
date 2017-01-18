@@ -150,4 +150,26 @@ class GroupController extends Controller
 
     }
 
+    public function close(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+
+        $group = Group::where('id',$groupId)->first();
+
+        $group->deadLineFlg = false;
+
+        $group->save();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+            )
+        );
+
+    }
+
 }
