@@ -135,10 +135,10 @@ class GroupController extends Controller
         $groupId = $json->group_id;
 
         //未承認グループメンバー
-        $requestMember = GroupMember::where('group_id',$groupId)->where('requestFlg',false)->get();
+        $requestMember = GroupMember::where('group_id',$groupId)->where('requestFlg',true)->get();
 
         //承認済みグループメンバー
-        $acceptMember = GroupMember::where('group_id',$groupId)->where('requestFlg',true)->get();
+        $acceptMember = GroupMember::where('group_id',$groupId)->where('requestFlg',false)->get();
 
         return Response::json(
             array(
