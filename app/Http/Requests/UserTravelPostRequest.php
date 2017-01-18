@@ -25,7 +25,7 @@ class UserTravelPostRequest extends Request
     {
         return [
             'name' => 'required|max:100',
-            'comment' => 'required|max:255',
+            'comment' => 'max:255',
         ];
     }
 
@@ -33,7 +33,6 @@ class UserTravelPostRequest extends Request
         return [
             'name.required' => '旅名は空白ではいけません！',
             'name.max' => '旅名は最大255文字以内にしないといけません！',
-            'comment.required' => 'コメントは空白ではいけません！',
             'comment.max' => 'コメントは最大255文字以内にしないといけません!',
         ];
     }
