@@ -26,8 +26,7 @@
                     <p>いまホットなジャンルです。</p>
                 </div>
                 <div class="col-lg-8 col-xs-12 animate-box fadeInDown animated">
-                    <form class="form-horizontal" action="/user/travel/search/result" method="POST">
-                        {{csrf_field()}}
+                    <form class="form-horizontal" action="/user/travel/search/result" method="GET">
                         <fieldset>
                             <legend>検索フォーム</legend>
                             <div class="form-group">
