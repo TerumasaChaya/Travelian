@@ -135,10 +135,30 @@ class GroupController extends Controller
         $groupId = $json->group_id;
 
         //未承認グループメンバー
-        $requestMember = GroupMember::where('group_id',$groupId)->where('requestFlg',true)->get();
+        $requestMembers = GroupMember::where('group_id',$groupId)->where('requestFlg',true)->get();
+        $requestMember = [];
+
+        foreach ($requestMembers as $item){
+            $requestMember[] = [
+                'user_id' => $item->users->id,
+                'user_name' => $item->users->name,
+                'leaderFlg' => $item->leaderFlg,
+                'requestFlg' => $item->requestFlg
+            ];
+        }
 
         //承認済みグループメンバー
-        $acceptMember = GroupMember::where('group_id',$groupId)->where('requestFlg',false)->get();
+        $acceptMembers = GroupMember::where('group_id',$groupId)->where('requestFlg',false)->get();
+        $acceptMember = [];
+
+        foreach ($acceptMembers as $item){
+            $acceptMember[] = [
+                'user_id' => $item->users->id,
+                'user_name' => $item->users->name,
+                'leaderFlg' => $item->leaderFlg,
+                'requestFlg' => $item->requestFlg
+            ];
+        }
 
         return Response::json(
             array(
