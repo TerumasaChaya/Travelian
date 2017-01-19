@@ -125,6 +125,7 @@ Route::group(['middleware' => 'api'], function () {
             Route::group(['prefix' => 'request'], function () {
                 Route::post('send', 'Api\GroupController@request');
                 Route::post('cancel', 'Api\GroupController@requestCancel');
+                Route::post('check', 'Api\GroupController@check');
             });
 
         });
