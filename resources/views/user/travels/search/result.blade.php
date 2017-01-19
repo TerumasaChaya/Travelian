@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
-                    <h3>Search Result</h3>
+                    <h3>検索結果</h3>
                     <p class="text-center">{{$keyMes}} <br>{{$genreMes}} <br> {{$regionMes}}</p>
                 </div>
             </div>
