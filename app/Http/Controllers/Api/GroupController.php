@@ -192,4 +192,52 @@ class GroupController extends Controller
 
     }
 
+    public function check(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+        $userId = $json->user_id;
+
+        //グループメンバー
+        $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
+
+        //グループ
+        $group = $groupMember->groups();
+
+        $message = "";
+
+        //締め切れてなければTrue
+        if($group->deadLineFlg == true){
+
+            //承認されてなければTrue
+            if($groupMember->requestFlg == true){
+                $message = "unApp";
+            }else{
+                $message = "app";
+            }
+
+        }else{
+
+            //承認されてなければTrue
+            if($groupMember->requestFlg == true){
+                $message = "closeUnApp";
+            }else{
+                $message = "closeApp";
+            }
+
+        }
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'message' => $message
+            )
+        );
+
+
+    }
+
 }
