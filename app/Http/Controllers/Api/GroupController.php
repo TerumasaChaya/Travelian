@@ -205,7 +205,7 @@ class GroupController extends Controller
         $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
 
         //グループ
-        $group = $groupMember->groups();
+        $group = Group::where('id',$groupId)->first();
 
         $message = "";
 
