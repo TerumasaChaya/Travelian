@@ -237,6 +237,53 @@ class GroupController extends Controller
             )
         );
 
+    }
+
+    public function memberAccept(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+        $userId = $json->user_id;
+
+        //グループメンバー
+        $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
+
+        $groupMember->request = false;
+
+        $groupMember->save();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+            )
+        );
+
+    }
+
+    public function memberDenial(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+        $userId = $json->user_id;
+
+        //グループメンバー
+        $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
+
+        $groupMember->request = true;
+
+        $groupMember->save();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+            )
+        );
 
     }
 

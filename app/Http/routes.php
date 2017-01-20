@@ -128,6 +128,11 @@ Route::group(['middleware' => 'api'], function () {
                 Route::post('check', 'Api\GroupController@check');
             });
 
+            Route::group(['prefix' => 'member'], function () {
+                Route::post('accept', 'Api\GroupController@memberAccept');
+                Route::post('denial', 'Api\GroupController@memberDenial');
+            });
+
         });
 
     });
