@@ -251,9 +251,6 @@ class GroupController extends Controller
         //グループメンバー
         $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
 
-        //
-        $groupMember->requestFlg = new \stdClass();
-
         $groupMember->requestFlg = false;
 
         $groupMember->save();
