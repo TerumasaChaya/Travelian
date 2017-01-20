@@ -347,6 +347,13 @@ class TravelController extends Controller
 
         $detail = TravelDetail::where('travel_id', $travel->id)->get();
 
+        //旅ポイントとジャンルポイントの加算
+        $travel->travelPoint = $travel->travelPoint + 10;
+        $travel->save();
+        $genrePoint = Genre::where('id',$travel->genre_id)->first();
+        $genrePoint->genrePoint = $genrePoint->genrePoint + 5;
+        $genrePoint->save();
+
         return Response::json(
             array(
                 'status' => 'Success',
@@ -426,6 +433,11 @@ class TravelController extends Controller
         $newTravel->releaseFlg = $releaseFlg;
 
         $newTravel->save();
+
+        //ジャンルポイントの加算
+        $genrePoint = Genre::where('id',$genreId)->first();
+        $genrePoint->genrePoint = $genrePoint->genrePoint + 10;
+        $genrePoint->save();
 
         //旅都道府県テーブルに都道府県を保存
         foreach ($json->travel[0]->regions as $region){
