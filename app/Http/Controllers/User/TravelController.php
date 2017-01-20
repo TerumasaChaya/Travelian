@@ -30,6 +30,10 @@ class TravelController extends Controller
 
         $travel = Travel::where('id',$travelDetails[0]->travel_id)->first();
 
+        if($travel->releaseFlg == false){
+            return redirect('/home');
+        }
+
         $details = [];
 
         foreach ($travelDetails as $detail){
