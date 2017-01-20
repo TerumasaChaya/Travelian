@@ -251,7 +251,7 @@ class GroupController extends Controller
         //グループメンバー
         $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
 
-        $groupMember->request = false;
+        $groupMember->requestFlg = false;
 
         $groupMember->save();
 
@@ -275,7 +275,7 @@ class GroupController extends Controller
         //グループメンバー
         $groupMember =  GroupMember::where('user_id',$userId)->where('group_id',$groupId)->first();
 
-        $groupMember->request = true;
+        $groupMember->requestFlg = true;
 
         $groupMember->save();
 
