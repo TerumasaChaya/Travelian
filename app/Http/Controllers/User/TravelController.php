@@ -30,7 +30,7 @@ class TravelController extends Controller
 
         $travel = Travel::where('id',$travelDetails[0]->travel_id)->first();
 
-        if($travel->releaseFlg == false){
+        if($travel->releaseFlg == false && Auth::user()->id != $travel->user_id){
             return redirect('/home');
         }
 
