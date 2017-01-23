@@ -483,7 +483,8 @@ class TravelController extends Controller
 
         return Response::json(
             array(
-                'status' => 'Success'
+                'status' => 'Success',
+                'travel_id' => $newTravel->id
             )
         );
 
