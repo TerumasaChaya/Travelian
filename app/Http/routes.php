@@ -82,6 +82,10 @@ Route::group(['middleware' => 'api'], function () {
 
             Route::post('manualLogin', 'Api\UserController@manualLogin');
 
+            Route::group(['middleware' => 'travel'], function () {
+                Route::post('sync', 'Api\UserController@sync');
+            });
+
             Route::group(['middleware' => 'login'], function () {
                 Route::post('login', 'Api\UserController@login');
             });

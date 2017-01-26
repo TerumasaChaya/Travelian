@@ -98,4 +98,23 @@ class UserController extends Controller
 
     }
 
+    public function sync(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $userId = $json->user_id;
+
+        $travel = Travel::where('user_id',$userId)->whereNotIn('id',$json->travels)->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'travels'   => $travel
+            )
+        );
+
+    }
+
 }
