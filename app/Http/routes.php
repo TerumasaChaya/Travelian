@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'group'], function () {
             Route::get('/', 'User\GroupController@index');
+            Route::get('/detail/{id}', 'User\GroupController@detail');
         });
 
         Route::group(['prefix' => 'photos'], function() {
