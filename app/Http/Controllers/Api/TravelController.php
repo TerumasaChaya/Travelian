@@ -432,6 +432,12 @@ class TravelController extends Controller
         $newTravel->travelPoint = 20;
         $newTravel->releaseFlg = $releaseFlg;
 
+        if(isset($json->group_id)){
+            $newTravel->group_id = $json->group_id;
+        }
+
+        $newTravel->group_id = 0;
+
         $newTravel->save();
 
         //ジャンルポイントの加算
