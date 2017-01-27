@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use App\GroupMember;
 use App\Http\Controllers\Controller;
+use App\TravelDetail;
 use App\User;
 use App\Travel;
 use App\Group;
@@ -286,5 +287,84 @@ class GroupController extends Controller
         );
 
     }
+
+    public function unionList(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $userId = $json->user_id;
+
+        $groupMembers = GroupMember::where('user_id',$userId)->where('leaderFlg',true)->get();
+
+        $group = [];
+
+        foreach ($groupMembers as $member){
+            $group[] = [
+                'group_id' => $member->groups->id,
+                'group_name' => $member->groups->name
+            ];
+        }
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'groups' => $group
+            )
+        );
+
+    }
+
+    public function unionCheck(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $groupId = $json->group_id;
+
+        $groupMembers = GroupMember::where('group_id',$groupId)->get();
+
+        $images = [];
+
+        foreach ($groupMembers as $member){
+
+            $userId = $member->user_id;
+
+            $travel = Travel::where('user_id',$userId)->where('group_id',$groupId)->first();
+
+            if($travel == null){
+                return Response::json(
+                    array(
+                        'status' => 'Failed',
+                    )
+                );
+            }
+
+            $details = TravelDetail::where('travel_id',$travel->id)->get();
+
+            if($details->photo != ""){
+                $images[] = $details->photo;
+            }
+
+        }
+
+        $leader = GroupMember::where('group_id',$groupId)->where('leaderFlg',true)->first();
+
+        $travel = Travel::where('user_id',$leader->user_id)->where('group_id',$groupId)->first();
+
+        $detail = TravelDetail::where('travel_id',$travel->id)->where('photo','=','')->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'details' => $detail,
+                'images' => $images
+            )
+        );
+
+    }
+
 
 }
