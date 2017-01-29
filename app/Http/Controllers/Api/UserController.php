@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Travel;
+use App\TravelDetail;
 use Auth;
 use Hash;
 use Response;
@@ -108,10 +109,40 @@ class UserController extends Controller
 
         $travel = Travel::where('user_id',$userId)->whereNotIn('id',$json->travels)->get();
 
+        foreach ($travel as $item){
+            $regions = [];
+            foreach ($item->travelPrefectures as $pres){
+                $regions[] = $pres->prefectures->name;
+            }
+            $item->regions = $regions;
+        }
+
         return Response::json(
             array(
                 'status' => 'Success',
                 'travels'   => $travel
+            )
+        );
+
+    }
+
+
+    public function syncDetail(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $travelId = $json->travel_id;
+
+        $travel = Travel::where('id', $travelId)->first();
+
+        $detail = TravelDetail::where('travel_id', $travel->id)->get();
+
+        return Response::json(
+            array(
+                'status' => 'Success',
+                'detail' => $detail
             )
         );
 
