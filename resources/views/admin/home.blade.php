@@ -125,4 +125,44 @@
                 </div>
             </div>
         </div>
+        @if($reports == null)
+        @else
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading ">
+                        <i class="fa fa-user fa-fw"></i>New Reports
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="col-lg-6">Name</th>
+                                    <th class="col-lg-3">Created Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($reports as $report)
+                                    <tr>
+                                        <td>
+                                            @if($report->travels->releaseFlg == true)
+                                            <a href="/admin/travel/public/{{$report->id}}">
+                                                {{$report->travels->name}}
+                                            </a>
+                                            @else
+                                                <a href="/admin/travel/private/{{$report->id}}">
+                                                    {{$report->travels->name}}
+                                                </a>
+                                            @endif
+                                        </td>
+                                        <td>{{$report->created_at}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 @endsection

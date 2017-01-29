@@ -40,6 +40,9 @@
                 <li>
                     <a href="/admin/genres"><i class="fa fa-tag fa-fw"></i>Genres</a>
                 </li>
+                <li>
+                    <a href="/admin/reports"><i class="fa fa-warning fa-fw"></i>Reports</a>
+                </li>
             </ul>
             <!-- end side-menu -->
         </div>

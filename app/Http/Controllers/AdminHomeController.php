@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\User;
+use App\Report;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -27,6 +28,8 @@ class AdminHomeController extends Controller
     {
         $users = User::orderBy('created_at','desc')->take(10)->get();
 
-        return view('admin.home')->with('users',$users);
+        $reports = Report::orderBy('created_at','desc')->take(10)->get();
+
+        return view('admin.home')->with('users',$users)->with('reports',$reports);
     }
 }

@@ -184,6 +184,10 @@ Route::group(['middleware' => 'auth:admin'], function () {
             Route::post('/delete', 'Admin\UserController@delete');
         });
 
+        Route::group(['prefix' => 'reports'], function() {
+            Route::get('/', 'Admin\ReportController@index');
+        });
+
         Route::group(['prefix' => 'travel'], function() {
 
             Route::group(['prefix' => 'private'], function() {
