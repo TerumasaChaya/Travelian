@@ -38,6 +38,17 @@ body {
     margin-top: 80px;
 }
 
+.privacy-box {
+    position: relative;
+    max-width: 700px;
+    background: #f1c40f;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding-bottom: 20px;
+    margin-top: 80px;
+}
+
 .login-logo {
     text-align: center;
     padding: 15px 0 10px;

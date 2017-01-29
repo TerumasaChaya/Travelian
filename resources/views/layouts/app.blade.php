@@ -40,6 +40,7 @@ background: -webkit-radial-gradient(rgb(241, 196, 15), rgb(243, 156, 18));
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- End Login box -->
 <footer class="container">
+    <p id="footer-text"><a href="/privacy"><small>プライバシーポリシーはこちら</small></a></p>
     <p id="footer-text"><small>Copyright &copy; 2016 Travelial</small></p>
 </footer>
 

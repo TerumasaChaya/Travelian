@@ -34,6 +34,11 @@ $this->post('admin/password/reset', 'AdminAuth\PasswordController@reset');
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/privacy', function()
+{
+    return view('auth.privacy');
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'user'], function () {
