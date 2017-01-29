@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'group'], function () {
             Route::get('/', 'User\GroupController@index');
+            Route::get('/detail/{id}', 'User\GroupController@detail');
         });
 
         Route::group(['prefix' => 'photos'], function() {
@@ -80,6 +81,10 @@ Route::group(['middleware' => 'api'], function () {
             Route::post('create', 'Api\UserController@create');
 
             Route::post('manualLogin', 'Api\UserController@manualLogin');
+
+            Route::group(['prefix' => 'travel'], function () {
+                Route::post('sync', 'Api\UserController@sync');
+            });
 
             Route::group(['middleware' => 'login'], function () {
                 Route::post('login', 'Api\UserController@login');
@@ -131,6 +136,11 @@ Route::group(['middleware' => 'api'], function () {
             Route::group(['prefix' => 'member'], function () {
                 Route::post('accept', 'Api\GroupController@memberAccept');
                 Route::post('denial', 'Api\GroupController@memberDenial');
+            });
+
+            Route::group(['prefix' => 'union'], function () {
+                Route::post('list', 'Api\GroupController@unionList');
+                Route::post('check', 'Api\GroupController@unionCheck');
             });
 
         });
