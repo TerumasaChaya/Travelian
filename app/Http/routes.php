@@ -89,6 +89,7 @@ Route::group(['middleware' => 'api'], function () {
 
             Route::group(['prefix' => 'travel'], function () {
                 Route::post('sync', 'Api\UserController@sync');
+                Route::post('syncDetail', 'Api\UserController@syncDetail');
             });
 
             Route::group(['middleware' => 'login'], function () {
