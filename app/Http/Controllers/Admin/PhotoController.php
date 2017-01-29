@@ -17,7 +17,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $travels = TravelDetail::where('photo', '!=', '')->paginate(16);
+        $travels = TravelDetail::where('photo', '!=', '')->orderBy('created_at','desc')->paginate(16);
 
         return view('admin.photos')->with('travels', $travels);
     }
