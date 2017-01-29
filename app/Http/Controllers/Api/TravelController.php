@@ -8,6 +8,7 @@ use App\Travel;
 use App\TravelDetail;
 use App\Genre;
 use App\Prefecture;
+use App\Report;
 use Auth;
 use Hash;
 use Response;
@@ -515,6 +516,28 @@ class TravelController extends Controller
 
         file_put_contents($travelImage, base64_decode($image));
         file_put_contents($thumbnailImage,base64_decode($miniImage));
+
+        return Response::json(
+            array(
+                'status' => 'Success'
+            )
+        );
+
+    }
+
+    public function report(Request $request){
+
+        $json = base64_decode(str_replace(' ', '+', $request->input('json')));
+
+        $json = json_decode($json);
+
+        $travelId = $json->travel_id;
+
+        $report = new Report();
+
+        $report->travel_id = $travelId;
+
+        $report->save();
 
         return Response::json(
             array(
